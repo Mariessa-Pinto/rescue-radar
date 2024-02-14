@@ -20,9 +20,9 @@ export default function PetFinder() {
 
         const data = await response.json();
         if (data && data.animals) {
-          const dogList = data?.animals
-            ?.filter((animal: { type: string; }) => animal.type === "Dog")
-            ?.map((dog: { name: any; description: any; age: any; weight: any; gender: any; }) => ({
+          const dogList = data.animals
+            .filter((animal: { type: string; }) => animal.type === "Dog")
+            .map((dog: { name: any; description: any; age: any; weight: any; gender: any; }) => ({
               name: dog.name,
               description: dog.description,
               age: dog.age,
@@ -52,7 +52,7 @@ export default function PetFinder() {
   };
 
   return (
-    <div>
+   /*<div>
       {dogs.map((dog, index) => (
         <div key={index}>
           <h2>{dog.name}</h2>
@@ -63,7 +63,9 @@ export default function PetFinder() {
           <hr />
         </div>
       ))}
-    </div>
+    </div>*/ 
+    <>
+    </>
   );
 }
 
