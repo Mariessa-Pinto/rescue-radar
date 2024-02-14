@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export default function PetFinder() {
   const apiKey = process.env.NEXT_PUBLIC_KEY;
   const secret = process.env.NEXT_PUBLIC_SECRET;
-  const [dogs, setDogs] = useState<IDog | []>([]);
+  const [dogs, setDogs] = useState<IDog[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +21,8 @@ export default function PetFinder() {
         const data = await response.json();
         if (data && data.animals) {
           const dogList = data.animals
-            .filter((animal: { type: string; }) => animal.type === "Dog")
-            .map((dog: { name: any; description: any; age: any; weight: any; gender: any; }) => ({
+            .filter((animal: { type: string }) => animal.type === "Dog")
+            .map((dog: any) => ({
               name: dog.name,
               description: dog.description,
               age: dog.age,
@@ -52,20 +52,18 @@ export default function PetFinder() {
   };
 
   return (
-   /*<div>
+    <div>
       {dogs.map((dog, index) => (
         <div key={index}>
           <h2>{dog.name}</h2>
           <p>{dog.description}</p>
           <p>Age: {dog.age}</p>
-          <p>Weight: {dog.weight}</p>
+          <p>Weight: {dog.size}</p>
           <p>Gender: {dog.gender}</p>
           <hr />
         </div>
       ))}
-    </div>*/ 
-    <>
-    </>
+    </div>
   );
 }
 
