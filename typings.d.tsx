@@ -3,15 +3,10 @@ interface ILargeButton {
 }
 
 interface IDog {
-    animal: string,
-
-    dog: {
-        name: string;
-        description: string;
-        age: string;
-        size: string;
-        gender: string;
-    }
-   
-    }
+    name: string;
+    description: string;
+    age: string;
+    size: string;
+    gender: string;
+  }
   
