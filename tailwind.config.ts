@@ -14,6 +14,11 @@ const config: Config = {
       fontSize: {
         base: '16px',
         'h1': '36px',
+        'h4':'20px',
+        'th1': '58px',
+        'tbase': '24px',
+        'wh1': '48px',
+        'wh2': '32px',
       },
       height: {
         '65': '65vh',
@@ -42,13 +47,18 @@ const config: Config = {
       },
       backgroundPosition: {
         'bottom-right': 'calc(100%) 10px',
+        'bottom-right-md': 'calc(100%) 160px',
+        'bottom-right-lg': 'calc(100%) 10px',
       },
       borderRadius: {
         'xl': '100px',
         'button': '20px',
+        '2xl': '300px',
+        '3xl': '500px',
       },
       margin: {
         'neg2': '-2rem',
+        'neg5': '-5rem',
       }
     },
   },
