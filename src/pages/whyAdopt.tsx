@@ -10,7 +10,7 @@ export default function WhyAdopt() {
     return (
         <>
   
-        <main className={`flex min-h-screen flex-col items-center justify-between p-24 w-430`}>
+        <main className={`flex min-h-screen flex-col items-center justify-between`}>
         <Navbar />
             <div className={`flex flex-col p-10 items-start gap-4`}>
             <h1 className={`text-3xl font-extrabold`}>Why Rescue</h1>
