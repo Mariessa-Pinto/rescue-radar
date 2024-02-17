@@ -19,6 +19,9 @@ const config: Config = {
         '65': '65vh',
         '90': '90%',
       },
+      width: {
+        '197': '197px',
+      },
       colors: {
         blue: '#1FCBFF',
         red: '#C41C4C',
@@ -28,6 +31,7 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'collie': "url('/home/collie.png')",
+        'bone': "url('/list/bonebg.svg')",
       },
       backgroundSize: {
         'auto': 'auto',
