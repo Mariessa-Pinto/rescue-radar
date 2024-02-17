@@ -1,5 +1,6 @@
 interface ILargeButton {
     text: string;
+    link: string;
 }
 
 interface IDog {
@@ -10,7 +11,7 @@ interface IDog {
     gender: string;
   }
 
-  interface IAdopt {
+interface IAdopt {
     breed_name: string,
     weight: number,
     coat: string, 

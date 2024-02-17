@@ -1,9 +1,8 @@
 import Link from "next/link"
 
-
 export default function Navbar() {
     return (
-        <div className={`flex flex-row gap-20`}>
+        <div className={`flex flex-row h-20 w-screen shadow-lg`}>
             <Link href={'/'}>Home</Link>
             <Link href={'/quiz'}>Quiz</Link>
             <Link href={'/results'}>Results</Link>
