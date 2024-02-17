@@ -1,8 +1,12 @@
-const LargeButton = ({ text }: ILargeButton) => {
+import Link from "next/link";
+
+const LargeButton = ({ text, link }: ILargeButton) => {
     return (
-        <button className={`rounded-full border-2 w-60 h-14 border-blue font-outfit text-xl font-medium`}>
-            {text}
-        </button>
+        <Link href={link}>
+            <button className={`rounded-full border-2 w-60 h-14 border-blue font-outfit text-xl font-medium bg-white shadow-lg`}>
+                {text}
+            </button>
+        </Link>
     );
 }
 
