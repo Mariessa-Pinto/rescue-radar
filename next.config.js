@@ -5,6 +5,9 @@ const nextConfig = {
 
 module.exports = nextConfig
 module.exports = {
+  images: {
+    domains: ['dl5zpyw5k3jeb.cloudfront.net'],
+  },
   async rewrites() {
     return [
       {
