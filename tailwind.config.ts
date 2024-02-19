@@ -59,7 +59,12 @@ const config: Config = {
       margin: {
         'neg2': '-2rem',
         'neg5': '-5rem',
-      }
+      },
+      truncate: {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
     },
   },
   plugins: [],
