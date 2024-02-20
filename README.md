@@ -14,4 +14,4 @@ a web application displaying rescue dogs in your region to be adopted. It will h
 
 ## API'S
 - [Petfinder Api](https://www.petfinder.com/developers/)
-- [Dog Information Api](https://api.api-ninjas.com/v1/dogs)
+- [Dog Information Api](https://api-ninjas.com/api/dogs)
