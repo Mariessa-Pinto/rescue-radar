@@ -1,7 +1,7 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import Navbar from '@/components/Navbar'
 import LargeButton from '@/components/LargeButton'
-import Link from 'next/link'
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function Home() {

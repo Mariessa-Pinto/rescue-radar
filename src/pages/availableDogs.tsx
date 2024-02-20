@@ -2,7 +2,6 @@ import Navbar from '@/components/Navbar'
 import Image from 'next/image'
 import { useState } from 'react'
 import PetFinder from '@/components/PetFinder'
-import ViewDog from '@/components/ViewDog'
 
 export default function AvailableDogs() {
     const [searchQuery, setSearchQuery] = useState<string>('');
