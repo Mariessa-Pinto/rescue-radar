@@ -4,6 +4,7 @@ import QuizQuestions from '../QuizQuestions';
 
 const QuizContainer: React.FC = () => {
     const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
+    const [matchedDog, setMatchedDog] = useState<IAdopt | null>(null);
     
     const questions: { label: string; question: string; answers: string[] }[] = [
         {
@@ -45,8 +46,26 @@ const QuizContainer: React.FC = () => {
         setSelectedAnswers([...selectedAnswers, answer]);
     };
 
-    const handleSubmit = () => {
-      // this will be API call to match the breed
+    const handleSubmit = async () => {
+     try {
+        const payload = {
+            answers: selectedAnswers,
+        };
+        const response = await fetch('/api/matchDog', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+        })
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+        const matchedDogData = await response.json();
+        setMatchedDog(matchedDogData);
+     } catch (error) {
+        console.error('Error:', error)
+     }
     };
 
     return (
@@ -64,6 +83,16 @@ const QuizContainer: React.FC = () => {
          
         </div>
            <button onClick={handleSubmit}>Submit</button>
+           {
+            matchedDog && (
+                <div>
+                     <h2>Your Perfect Match:</h2>
+                    {/* Display information about the matched dog */}
+                    <p>Dog name: {matchedDog.name}</p>
+                    {/* Add other relevant information */}
+                </div>
+            )
+           }
            </>
     );
 }
