@@ -99,7 +99,7 @@ export default function BarChart() {
         responsive: true
     };
     return (
-        <div className={`flex flex-col`}>
+        <div data-testid="barchart" className={`flex flex-col`}>
         <div className={`h-96 w-96 mb-4`}>
             <Bar data={chartData} options={chartOptions} />
         </div>
