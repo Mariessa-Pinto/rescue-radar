@@ -5,6 +5,7 @@ import styles from '../styles/why.module.css'
 import BarChart from '@/components/BarChart'
 import { useState, useEffect } from 'react'
 
+
 export default function WhyAdopt() {
     const [isLargeScreen, setIsLargeScreen] = useState<boolean>(false);
 
@@ -79,8 +80,12 @@ export default function WhyAdopt() {
                     <BarChart/>
                 </div>
              
-                <div className={`bg-red rounded-t-xl h-12 flex justify-center w-full`}>
-                    <div className={`h-full w-12 bg-red rounded-full rounded-lg`}></div>
+                <div className={`bg-red rounded-t-xl h-full flex justify-center w-full`}>
+                    <div className={`h-full w-12 bg-red rounded-full rounded-lg`}> </div>
+                    <LargeButton
+                            text="View Adoptable Dogs"
+                            link='availableDogs'
+                        />
                 </div>
             </main>
         </>
