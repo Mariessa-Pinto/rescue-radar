@@ -8,8 +8,9 @@ export default function WhyAdopt() {
         <>
             <main className={`flex flex-col items-center justify-between`}>
                 <Navbar />
-                <div className={`w-full`}>
+                <div className={`hidden lg:block`}>
                     <Image
+                    
                         src="/whyimgs/banner.jpg"
                         width={1200}
                         height={100}
