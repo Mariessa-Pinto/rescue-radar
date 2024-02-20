@@ -10,7 +10,7 @@ export default function Navbar() {
     };
 
     return (
-        <div className={`flex flex-row h-20 w-screen shadow-lg bg-white items-center justify-end pr-5`}>
+        <div data-testid="navbar" className={`flex flex-row h-20 w-screen shadow-lg bg-white items-center justify-end pr-5`}>
             <div className="cursor-pointer" onClick={toggleOverlay}>
                 <Image 
                     src="/nav/menu.svg" 

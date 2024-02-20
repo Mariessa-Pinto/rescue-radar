@@ -51,7 +51,7 @@ const QuizContainer: React.FC = () => {
 
     return (
         <>
-        <div>
+        <div data-testid="quizCon">
             {questions.map((questionData, index) => (
                 <QuizQuestions
                     key={index}
