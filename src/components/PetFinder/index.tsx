@@ -64,7 +64,7 @@ export default function PetFinder({ searchQuery, onDogClick }: IPetFinderProps) 
   };
 
   return (
-    <div className={`flex flex-wrap justify-center gap-2`}>
+    <div data-testid="petfinder" className={`flex flex-wrap justify-center gap-2`}>
           {
               dogs.map((dog) => {
                     return (

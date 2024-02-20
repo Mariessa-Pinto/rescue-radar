@@ -32,5 +32,39 @@ describe('Home Page', () => {
 
         cy.get('main').find('[data-testid="quizCon"]').should('exist')
     })
+    it('should have a bar chart', () => {
+        cy.visit('http://localhost:3000/whyAdopt')
+
+        cy.get('main').find('[data-testid="barchart"]').should('exist')
+    })
+    it('should have the petfinder Api', () => {
+        cy.visit('http://localhost:3000/availableDogs');
+
+        cy.get('main').find('[data-testid="petfinder"]').should('exist')
+    })
+    it('should have a RedButton component with specific text and link for sending form', () => {
+        cy.visit('http://localhost:3000/adoptionForm')
+        const buttonText = 'Send Form';
+        const buttonLink = '/formSent';
+
+        cy.get('a[href="' + buttonLink + '"]').find('[data-testid="redBtn"]')
+            .should('exist')
+            .should('contain', buttonText);
+       })
+       it('should have a RedButton component with specific text and link to go back', () => {
+        cy.visit('http://localhost:3000/formSent')
+        const buttonText = 'Back To Home';
+        const buttonLink = '/';
+
+        cy.get('a[href="' + buttonLink + '"]').find('[data-testid="redBtn"]')
+            .should('exist')
+            .should('contain', buttonText);
+       })
+       /*it('should have the adoptapet Api', () => {
+        cy.visit('http://localhost:3000/results');
+
+        cy.get('main').find('[data-testid="adoptapet"]').should('exist')
+    })
+    */
 
 })
