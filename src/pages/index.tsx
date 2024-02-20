@@ -28,6 +28,7 @@ export default function Home() {
           <LargeButton
             text="Take Quiz"
             link='/quiz'
+            
           />
         </div>
         <div className={`w-screen h-full bg-red rounded-tr-xl rounded-tl-xl bg-no-repeat bg-bottom-right md:bg-bottom-right-md lg:bg-bottom-right-lg md:rounded-tr-2xl md:rounded-tl-2xl lg:rounded-tr-3xl lg:rounded-tl-3xl ${!isLargeScreen && 'bg-collie'}`}>
