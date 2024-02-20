@@ -65,6 +65,11 @@ describe('Home Page', () => {
 
         cy.get('main').find('[data-testid="adoptapet"]').should('exist')
     })
+    - methods to add: 
+    Cy.wrap – allows the use of cypress on the object. 
+    .its – get a property off of something 
+    .within – limit the scope of cypress commands to within a specific element 
+
     */
 
 })
