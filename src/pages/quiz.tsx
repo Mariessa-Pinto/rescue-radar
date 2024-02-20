@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import Navbar from '@/components/Navbar'
-import LargeButton from '@/components/LargeButton'
 import QuizContainer from '@/components/QuizContainer'
 
 export default function Quiz() {
