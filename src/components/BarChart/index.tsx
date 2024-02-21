@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Bar } from 'react-chartjs-2';
-import { ChartOptions, TooltipOptions, LegendOptions } from 'chart.js';
+import { ChartOptions } from 'chart.js';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,7 +9,6 @@ import {
     Title,
     Tooltip,
     Legend
-
 } from 'chart.js'
 
 ChartJS.register(
@@ -19,15 +18,11 @@ ChartJS.register(
     Title,
     Tooltip,
     Legend
-
-
 )
-
-
 
 export default function BarChart() {
     const [chartData, setChartData] = useState({
-        labels: [" Low Blood Pressure", "Increas Physical Fitness", "Decrease Stress" ,"Increase Happiness", "Meet New Friends"],
+        labels: [" Low Blood Pressure", "Increas Physical Fitness", "Decrease Stress", "Increase Happiness", "Meet New Friends"],
         datasets: [
             {
                 label: "Dog Owners",
@@ -58,13 +53,13 @@ export default function BarChart() {
                 intersect: false,
                 enabled: false,
                 callbacks: {
-                    label: function(context) {
+                    label: function (context) {
                         var label = context.dataset.label || '';
                         if (label) {
                             label += ': ';
                         }
                         if (context.parsed.y !== null) {
-                            label += context.parsed.y + '%'; 
+                            label += context.parsed.y + '%';
                         }
                         return label;
                     }
@@ -74,7 +69,7 @@ export default function BarChart() {
         interaction: {
             intersect: false,
             mode: 'index',
-            axis: 'x' 
+            axis: 'x'
         },
         scales: {
             y: {
@@ -91,7 +86,7 @@ export default function BarChart() {
                     text: 'Benefit expectations of owning a Dog',
                 },
                 ticks: {
-                    autoSkip: false 
+                    autoSkip: false
                 }
             }
         },
@@ -99,24 +94,21 @@ export default function BarChart() {
         responsive: true
     };
     return (
-
         <div className={`flex flex-col lg:flex-row items-center lg:gap-32 lg:items-center lg:ml-16`}>
-        <div className={`h-96 w-96 mb-4 lg:mr-8 lg:ml-8 lg:mr-0`}>
-
-
-            <Bar data={chartData} options={chartOptions} />
-        </div>
-        <div className={`flex flex-col lg:w-96`}>
-            <h2 className={`text-lg lg:text-xl font-semibold mb-4 lg:mb-0`}>Backed by Data:</h2>
-            <div style={{ width: '430px' }}>
-                <p className="text-base lg:text-lg">A National Institutes of Expectations for dog ownership: Perceived physical, mental and psychosocial health among prospective adopters. The perceived benefits pertaining to:</p>
-                <ul className="text-base lg:text-lg">
-                    <li>Mental Health Benefits</li>
-                    <li>Physical Health Benefits</li>
-                    <li>Social Wellbeing benefits</li>
-                </ul>
+            <div className={`h-96 w-96 mb-4 lg:mr-8 lg:ml-8 lg:mr-0`}>
+                <Bar data={chartData} options={chartOptions} />
+            </div>
+            <div className={`flex flex-col lg:w-96`}>
+                <h2 className={`text-lg lg:text-xl font-semibold mb-4 lg:mb-0`}>Backed by Data:</h2>
+                <div style={{ width: '430px' }}>
+                    <p className="text-base lg:text-lg">A National Institutes of Expectations for dog ownership: Perceived physical, mental and psychosocial health among prospective adopters. The perceived benefits pertaining to:</p>
+                    <ul className="text-base lg:text-lg">
+                        <li>Mental Health Benefits</li>
+                        <li>Physical Health Benefits</li>
+                        <li>Social Wellbeing benefits</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
     );
 }
