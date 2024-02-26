@@ -1,9 +1,11 @@
 import Navbar from '@/components/Navbar'
 import RedButton from '@/components/RedButton'
+import Header from '@/components/Header'
 
 export default function FormSent() {
     return (
         <main className={`flex flex-col items-center justify-between`}>
+            <Header/>
             <Navbar />
             <div className={`flex flex-col justify-between mt-8 w-404 gap-8`}>
                 <h1 className={`text-h1 md:text-th1 font-extrabold lg:text-wh1`}>Adoption Form Sent!</h1>

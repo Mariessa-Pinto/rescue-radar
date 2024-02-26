@@ -2,12 +2,15 @@ import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import LargeButton from '@/components/LargeButton';
 import BarChart from '@/components/BarChart'
+import Header from '@/components/Header';
 
 export default function WhyAdopt() {
     return (
         <>
             <main className={`flex flex-col items-center justify-between`}>
-                <Navbar />
+                <Header/>
+                <Navbar/>
+             
                 <div className={`w-full`}>
                     <Image
                         src="/whyimgs/banner.jpg"

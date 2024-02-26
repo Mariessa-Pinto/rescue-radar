@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import Image from 'next/image'
 import { useState } from 'react'
 import PetFinder from '@/components/PetFinder'
+import Header from '@/components/Header'
 
 export default function AvailableDogs() {
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -13,6 +14,7 @@ export default function AvailableDogs() {
 
     return (
         <main className={`flex min-h-screen flex-col items-center justify-start bg-bone`}>
+            <Header/>
             <Navbar />
             <div className={`p-5 pb-1 w-full`}>
                 <h1 className={`font-outfit text-h1 font-extrabold`}>Available Dogs</h1>

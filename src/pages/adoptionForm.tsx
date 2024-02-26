@@ -1,11 +1,13 @@
 import Navbar from '@/components/Navbar'
 import RedButton from '@/components/RedButton'
 import { useState } from 'react';
+import Header from '@/components/Header';
 
 
 export default function AdoptionForm() {
     return (
         <main>
+            <Header/>
             <Navbar />
             <div className={`flex flex-col items-center justify-between `}>
                 <h1 className={`text-h1 md:text-th1 font-extrabold lg:text-wh1`}>Adoption Form</h1>
