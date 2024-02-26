@@ -8,11 +8,17 @@ export default function WhyAdopt() {
     return (
         <>
             <main className={`flex flex-col items-center justify-between`}>
+ bri-responsiveness
                 <Header/>
                 <Navbar/>
              
                 <div className={`w-full`}>
+
+         
+                <div className={`hidden lg:block`}>
+
                     <Image
+                    
                         src="/whyimgs/banner.jpg"
                         width={1200}
                         height={100}

@@ -1,13 +1,6 @@
 import Image from 'next/image';
 
-interface QuizQuestionsProps {
-    label: string;
-    question: string;
-    answers: string[];
-    onAnswerSelect: (answer: string) => void;
-}
-
-const QuizQuestions: React.FC<QuizQuestionsProps> = ({ label, question, answers, onAnswerSelect }) => {
+const QuizQuestions = ({ label, question, answers, onAnswerSelect }: QuizQuestionsProps) => {
     return (
         <div style={{ backgroundColor: 'white', padding: '40px', marginBottom: '20px', borderRadius: '10px' }}>
             <div className={`text-2xl font-bold`}>{label}</div>

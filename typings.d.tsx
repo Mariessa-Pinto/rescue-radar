@@ -1,7 +1,10 @@
 interface ILargeButton {
     text: string;
     link: string;
-    onClick?: () => void;
+    onClick?: (e: any) => void;
+    id?: string;
+    value?: string;
+    disabled?: boolean;
 }
 
 interface IDog {
@@ -38,3 +41,10 @@ interface IViewDogProps {
   onClose: () => void;
 }
   
+
+interface QuizQuestionsProps {
+  label: string;
+  question: string;
+  answers: string[];
+  onAnswerSelect: (answer: string) => void;
+}
