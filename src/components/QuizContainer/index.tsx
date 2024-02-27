@@ -7,6 +7,8 @@ const QuizContainer = () => {
     const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
     const [matchedDog, setMatchedDog] = useState<IAdopt | null>(null);
 
+ 
+
     const questions: { label: string; question: string; answers: string[] }[] = [
         {
             label: "Question 1",
@@ -82,9 +84,9 @@ const QuizContainer = () => {
                 matchedDog && (
                     <div>
                         <h2>Your Perfect Match:</h2>
-                        {/* Display information about the matched dog */}
+                       
                         <p>Dog name: {matchedDog.name}</p>
-                        {/* Add other relevant information */}
+                        
                     </div>
                 )
             }
