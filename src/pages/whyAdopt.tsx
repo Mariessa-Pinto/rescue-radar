@@ -2,11 +2,13 @@ import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import LargeButton from '@/components/LargeButton';
 import BarChart from '@/components/BarChart'
+import Header from '@/components/Header';
 
 export default function WhyAdopt() {
     return (
         <>
             <main className={`flex flex-col items-center justify-between`}>
+                <Header/>
                 <Navbar />
                 <div className={`hidden lg:block`}>
                     <Image

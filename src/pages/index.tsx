@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar'
 import LargeButton from '@/components/LargeButton'
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Header from '@/components/Header';
 
 export default function Home() {
   const [isLargeScreen, setIsLargeScreen] = useState<boolean>(false);
@@ -18,6 +19,7 @@ export default function Home() {
 
   return (
     <main className={`flex min-h-screen flex-col items-center overflow-hidden md:justify-between`}>
+      <Header/>
       <Navbar />
       <div className={`p-10 pt-5 pb-0`}>
         <h1 className={`font-outfit text-h1 font-extrabold md:text-th1 lg:text-wh1 lg:max-w-2xl`}>Find your perfect companion!</h1>
