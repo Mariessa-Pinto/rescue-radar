@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import { useState, MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 
+
 enum FormFields {
     FIRST_NAME = 'first_name',
     PHONE_NUMBER = 'phone_number',
