@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import PetFinder from '@/components/PetFinder'
 
+
 export default function AvailableDogs() {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [selectedDog, setSelectedDog] = useState<IDog | null>(null);
