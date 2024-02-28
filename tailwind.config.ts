@@ -37,6 +37,7 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'collie': "url('/home/collie.png')",
         'bone': "url('/list/bonebg.svg')",
+        'halfCircle': "url('/list/halfCircle.svg')",
       },
       backgroundSize: {
         'auto': 'auto',
@@ -49,6 +50,7 @@ const config: Config = {
         'bottom-right': 'calc(100%) 10px',
         'bottom-right-md': 'calc(100%) 160px',
         'bottom-right-lg': 'calc(100%) 10px',
+        'top-right-': 'calc(100%) 0px',
       },
       borderRadius: {
         'xl': '100px',

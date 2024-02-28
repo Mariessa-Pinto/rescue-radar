@@ -7,8 +7,12 @@ export default function PetFinder({ searchQuery, onDogClick }: IPetFinderProps) 
   const secret = process.env.NEXT_PUBLIC_SECRET;
   const [dogs, setDogs] = useState<IDog[]>([]);
   const [selectedDog, setSelectedDog] = useState<IDog | null>(null);
+  const [page, setPage] = useState(1); 
 
   useEffect(() => {
+    fetchData();
+  }, [searchQuery, page]);
+
     const fetchData = async () => {
       const accessToken = await getToken();
 
@@ -38,13 +42,10 @@ export default function PetFinder({ searchQuery, onDogClick }: IPetFinderProps) 
               img: dog.photos.length > 0 ? dog.photos[0].medium : '/list/default-dog-image.jpg', 
             }));
 
-          setDogs(dogList);
+          setDogs(prevDogs => [...prevDogs, ...dogList]);
         }
       }
     };
-
-    fetchData();
-  }, [searchQuery]);
 
   const getToken = async () => {
     const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
@@ -61,6 +62,10 @@ export default function PetFinder({ searchQuery, onDogClick }: IPetFinderProps) 
 
   const handleDogClick = (dog: IDog) => {
     setSelectedDog(dog);
+  };
+
+  const loadMoreDogs = () => {
+    setPage(prevPage => prevPage + 1); 
   };
 
   return (
@@ -92,6 +97,7 @@ export default function PetFinder({ searchQuery, onDogClick }: IPetFinderProps) 
                 })
             }
             {selectedDog && <ViewDog dog={selectedDog} onClose={() => setSelectedDog(null)} />}
+            <button onClick={loadMoreDogs}>Load More</button>
     </div>
   );
 }

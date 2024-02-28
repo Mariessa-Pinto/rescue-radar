@@ -3,25 +3,37 @@ import RedButton from '../RedButton';
 
 const ViewDog = ({ dog, onClose }: IViewDogProps) => {
     return (
-        <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-            <div className="bg-white p-8 rounded-lg">
-                <button className="absolute top-2 right-2 text-gray-600" onClick={onClose}>
-                    Close
+        <div className="fixed top-20 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+            <div className="bg-white w-full h-full flex flex-col items-center p-10 gap-10 bg-no-repeat bg-halfCircle bg-top-right">
+                <button className="absolute top-2 right-2 text-white font-outfit font-outfit text-h1 font-extrabold" onClick={onClose}>
+                    X
                 </button>
-                <div className="flex justify-center mb-4">
-                    <Image src={dog.img} alt={dog.name} width={200} height={200} />
+                <div className={`flex flex-row w-full items-end justify-between mt-28`}>
+                    <div className={`flex flex-col`}>
+                        <p className={`font-outfit text-h1 font-extrabold md:text-th1 lg:text-wh1`}>{dog.name}</p>
+                        <p className={`font-outfit text-h3 font-semibold md:text-th3 lg:text-wh3`}>{dog.breed}</p>
+                        <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}>{dog.location}, {dog.state}</p>
+                    </div>
+                    <div>
+                        <Image
+                            className={`object-cover`}
+                            src={dog.img}
+                            alt={dog.name}
+                            width={200}
+                            height={200} />
+                    </div>
                 </div>
-                <p>Name: {dog.name}</p>
-                <p>Breed: {dog.breed}</p>
-                <p>Location: {dog.location}, {dog.state}</p>
-                <p>Age: {dog.age}</p>
-                <p>Size: {dog.size}</p>
-                <p>Description: {dog.description}</p>
+                <div className={`flex flex-row justify-between w-full mt-24`}>
+                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}>Age: {dog.age}</p>
+                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}> | </p>
+                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}> Size: {dog.size}</p>
+                </div>
+                <p className={`font-outfit text-base mb-5`}>{dog.description}</p>
+                <RedButton
+                    text="Adopt Now"
+                    link='/adoptionForm'
+                />
             </div>
-            <RedButton
-            text="Adopt Now"
-            link='/adoptionForm'
-            />
         </div>
     );
 };
