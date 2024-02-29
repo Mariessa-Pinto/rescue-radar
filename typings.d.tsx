@@ -23,12 +23,12 @@ interface IDog {
 
 interface IAdopt {
     name: string;
-    max_weight_female: number;
-    max_weight_male: number;
-    shedding: number;
-    energy: number;
-    good_with_other_dogs: number;
-    good_with_children: number;
+    max_weight_female: number | string;
+    max_weight_male: number | string;
+    shedding: number | string;
+    energy: number | string;
+    good_with_other_dogs: number | string;
+    good_with_children: number | string;
   }
 
   interface IPetFinderProps {
