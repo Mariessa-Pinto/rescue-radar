@@ -47,4 +47,5 @@ interface QuizQuestionsProps {
   question: string;
   answers: string[];
   onAnswerSelect: (answer: string) => void;
+  selectedAnswer: string;
 }

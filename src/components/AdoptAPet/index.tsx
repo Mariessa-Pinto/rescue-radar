@@ -42,12 +42,12 @@ export default function AdoptAPet() {
       {dg.map((dog, ind) => (
         <div key={ind}>
           <p>Dog name: {dog.name}</p>
-          <p>{dog.max_weight_female}</p>
-          <p>{dog.max_weight_male}</p>
-          <p>{dog.shedding}</p>
+          <p>Female weight: {dog.max_weight_female}</p>
+          <p>Male Weight: {dog.max_weight_male}</p>
+          <p>Shedding level: {dog.shedding}</p>
           <p>Energy level: {dog.energy}</p>
-          <p>{dog.good_with_other_dogs}</p>
-          <p>{dog.good_with_children}</p>
+          <p>Good with other dogs: {dog.good_with_other_dogs}</p>
+          <p>Good with children: {dog.good_with_children}</p>
         </div>
       ))}
 
