@@ -38,6 +38,7 @@ const QuizContainer = () => {
     ];
 
     const handleAnswerSelect = (answer: string) => {
+        console.log('Selected Answer:', answer);
         setSelectedAnswers([...selectedAnswers, answer]);
     };
 
@@ -73,6 +74,7 @@ const QuizContainer = () => {
                         question={questionData.question}
                         answers={questionData.answers}
                         onAnswerSelect={handleAnswerSelect}
+                        selectedAnswer={selectedAnswers[index] || ''}
                     />
                 ))}
             </div>
