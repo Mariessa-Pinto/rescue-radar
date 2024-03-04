@@ -69,18 +69,18 @@ export default function PetFinder({ searchQuery, onDogClick }: IPetFinderProps) 
   };
 
   return (
-    <div data-testid="petfinder" className={`flex flex-wrap justify-center gap-2`}>
+    <div data-testid="petfinder" className={`flex flex-wrap justify-center md:justify-between lg:justify-center items-center gap-2 lg:gap-10 md:w-full`}>
           {
               dogs.map((dog) => {
                     return (
                         <div 
-                          className={`flex flex-col shadow-lg bg-white rounded-button w-197 h-64`} 
+                          className={`flex flex-col shadow-lg bg-white rounded-button w-197 md:w-259 lg:w-350 h-64 lg:h-357`} 
                           key={dog.id}
                           onClick={() => handleDogClick(dog)}
                         >
                                 <div className={`flex flex-col `}>
                                     <Image
-                                        className={`rounded-tr-button rounded-tl-button h-40 object-cover`}
+                                        className={`rounded-tr-button rounded-tl-button h-40 object-cover md:w-60 lg:w-full lg:h-217`}
                                         src={dog.img}
                                         alt="dog"
                                         height={164}
@@ -97,7 +97,9 @@ export default function PetFinder({ searchQuery, onDogClick }: IPetFinderProps) 
                 })
             }
             {selectedDog && <ViewDog dog={selectedDog} onClose={() => setSelectedDog(null)} />}
-            <button onClick={loadMoreDogs}>Load More</button>
+            <div className="">
+              <button onClick={loadMoreDogs}>Load More</button>
+            </div>
     </div>
   );
 }

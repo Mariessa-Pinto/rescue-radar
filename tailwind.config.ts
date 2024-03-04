@@ -23,9 +23,14 @@ const config: Config = {
       height: {
         '65': '65vh',
         '90': '90%',
+        '357': '357px',
+        '384': '384px',
+        '217': '217px',
       },
       width: {
         '197': '197px',
+        '259': '230px',
+        '350': '350px',
       },
       colors: {
         blue: '#1FCBFF',
@@ -38,13 +43,14 @@ const config: Config = {
         'collie': "url('/home/collie.png')",
         'bone': "url('/list/bonebg.svg')",
         'halfCircle': "url('/list/halfCircle.svg')",
+        'listBanner': "url('/list/listBanner.png')",
       },
       backgroundSize: {
         'auto': 'auto',
         'cover': 'cover',
         'contain': 'contain',
         '50%': '50%',
-            '100%': '100%',
+        '100%': '100%',
       },
       backgroundPosition: {
         'bottom-right': 'calc(100%) 10px',
