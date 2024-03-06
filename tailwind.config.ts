@@ -26,11 +26,13 @@ const config: Config = {
         '357': '357px',
         '384': '384px',
         '217': '217px',
+        '630': '630px',
       },
       width: {
         '197': '197px',
         '259': '230px',
         '350': '350px',
+        '400': '400px',
       },
       colors: {
         blue: '#1FCBFF',
@@ -51,12 +53,13 @@ const config: Config = {
         'contain': 'contain',
         '50%': '50%',
         '100%': '100%',
+        '70%': '70%',
       },
       backgroundPosition: {
         'bottom-right': 'calc(100%) 10px',
         'bottom-right-md': 'calc(100%) 160px',
         'bottom-right-lg': 'calc(100%) 10px',
-        'top-right-': 'calc(100%) 0px',
+        'top-right': 'calc(100%) 0px',
       },
       borderRadius: {
         'xl': '100px',
