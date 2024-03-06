@@ -13,26 +13,57 @@ export default function Navbar() {
         <div className={`sticky top-0 z-50 bg-white shadow-lg`}>
             <div data-testid="navbar" className={`flex flex-row h-20 w-screen shadow-lg bg-white items-center justify-end pr-5 block lg:hidden`}>
                 <div className="cursor-pointer" onClick={toggleOverlay}>
-                    <Image
-                        src="/nav/menu.svg"
-                        alt="Menu"
-                        width={50}
-                        height={20}
-                    />
+                    {
+                        isOverlayOpen ? <button className="absolute top-2 right-2" onClick={toggleOverlay}>
+                            <p className={`relative right-5 font-outfit text-h1 font-extrabold`}>X</p>
+                        </button> : <Image
+                            src="/nav/menu.svg"
+                            alt="Menu"
+                            width={50}
+                            height={20}
+                        />
+                    }
                 </div>
                 {
                     isOverlayOpen && (
-                        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-                            <div className="bg-white p-8 rounded-lg">
-                                <button className="absolute top-2 right-2" onClick={toggleOverlay}>
-                                    <p>X</p>
-                                </button>
-                                <div className="flex flex-col gap-4">
-                                    <Link href="/">Home</Link>
-                                    <Link href="/quiz">Quiz</Link>
-                                    <Link href="/results">Results</Link>
-                                    <Link href="/whyAdopt">Why Adopt</Link>
-                                    <Link href="/availableDogs">Available Dogs</Link>
+                        <div className="fixed top-20 left-0 w-full h-full flex flex-col items-center md:items-start justify-center bg-white-800 bg-opacity-75 z-50 lg:w-full lg:h-dvh">
+                            <div className="bg-white p-8 rounded-lg w-full h-svh bg-navCircle bg-no-repeat bg-bottom md:bg-bottom-md md:bg-200%">
+                                <div className="flex flex-col items-center">
+                                    <div className='flex flex-col gap-16 ml-10 md:flex-row md:h-44'>
+                                        <Link href="/" className={`flex flex-row items-center gap-5`}>
+                                            <Image
+                                                src={'/nav/home.svg'}
+                                                alt="home icon"
+                                                width={40}
+                                                height={40} />
+                                            <h2 className={`font-outfit text-h3 font-semibold`}>Home</h2>
+                                        </Link>
+                                        <Link href="/quiz" className={`flex flex-row items-center gap-5`}>
+                                            <Image
+                                                src={'/nav/quiz.svg'}
+                                                alt="quiz icon"
+                                                width={40}
+                                                height={40} />
+                                            <h2 className={`font-outfit text-h3 font-semibold`}>Quiz</h2>
+                                        </Link>
+                                        <Link href='/availableDogs' className={`flex flex-row items-center gap-5 z-20`}>
+                                            <Image
+                                                src={'/nav/dogs.svg'}
+                                                alt="dogs icon"
+                                                width={40}
+                                                height={40} />
+                                            <h2 className={`font-outfit text-h3 font-semibold`}>Available Dogs</h2>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className={`absolute bottom-0 left-0 z-10`}>
+                                    <Image
+                                        className={`md:w-626`}
+                                        src={'/nav/navDog.png'}
+                                        alt='Dog image'
+                                        height={350}
+                                        width={380}
+                                    />
                                 </div>
                             </div>
                         </div>

@@ -33,6 +33,7 @@ const config: Config = {
         '259': '230px',
         '350': '350px',
         '400': '400px',
+        '626': '626px',
       },
       colors: {
         blue: '#1FCBFF',
@@ -46,6 +47,7 @@ const config: Config = {
         'bone': "url('/list/bonebg.svg')",
         'halfCircle': "url('/list/halfCircle.svg')",
         'listBanner': "url('/list/listBanner.png')",
+        'navCircle': "url('/nav/navCircle.svg')",
       },
       backgroundSize: {
         'auto': 'auto',
@@ -54,12 +56,15 @@ const config: Config = {
         '50%': '50%',
         '100%': '100%',
         '70%': '70%',
+        '200%': '200%',
       },
       backgroundPosition: {
         'bottom-right': 'calc(100%) 10px',
         'bottom-right-md': 'calc(100%) 160px',
         'bottom-right-lg': 'calc(100%) 10px',
         'top-right': 'calc(100%) 0px',
+        'bottom': 'calc(100%) 400px',
+        'bottom-md': 'calc(100%) 200px'
       },
       borderRadius: {
         'xl': '100px',
