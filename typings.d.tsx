@@ -34,6 +34,11 @@ interface IAdopt {
   interface IPetFinderProps {
     searchQuery: string;
     onDogClick: (dog: IDog) => void;
+    breedFilter: string;
+    ageFilter: string;
+    sizeFilter: string;
+    genderFilter: string;
+    temperamentFilter: string;
 }
 
 interface IViewDogProps {

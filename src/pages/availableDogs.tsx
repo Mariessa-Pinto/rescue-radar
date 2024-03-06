@@ -7,9 +7,36 @@ import PetFinder from '@/components/PetFinder'
 export default function AvailableDogs() {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [selectedDog, setSelectedDog] = useState<IDog | null>(null);
+    const [breedFilter, setBreedFilter] = useState<string>('');
+    const [ageFilter, setAgeFilter] = useState<string>('');
+    const [sizeFilter, setSizeFilter] = useState<string>('');
+    const [genderFilter, setGenderFilter] = useState<string>('');
+    const [temperamentFilter, setTemperamentFilter] = useState<string>('');
 
     const handleDogClick = (dog: IDog) => {
         setSelectedDog(dog);
+    };
+
+    const applyFilter = (filter: string, value: string) => {
+        switch (filter) {
+            case 'breed':
+                setBreedFilter(value);
+                break;
+            case 'age':
+                setAgeFilter(value.toLowerCase());
+                break;
+            case 'size':
+                setSizeFilter(value.toLowerCase());
+                break;
+            case 'gender':
+                setGenderFilter(value);
+                break;
+            case 'temperament':
+                setTemperamentFilter(value);
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -49,15 +76,24 @@ export default function AvailableDogs() {
                     height={40}
                 />
                 <div className={`flex gap-1 md:gap-2`}>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`}>Large</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`}>Puppy</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`}>Small</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base md:block hidden`}>Adult</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base md:block hidden`}>Senior</button>
+                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('size', 'large')}>Large</button>
+                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('age', 'baby')}>Baby</button>
+                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('size', 'small')}>Small</button>
+                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base md:block hidden`} onClick={() => applyFilter('age', 'adult')}>Adult</button>
+                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base md:block hidden`} onClick={() => applyFilter('age', 'senior')}>Senior</button>
                 </div>
             </div>
             <div className="flex flex-wrap justify-center gap-2 md:gap-5 md:w-11/12 lg:w-9-12">
-                <PetFinder searchQuery={searchQuery} onDogClick={handleDogClick} />
+                <PetFinder
+                    key={`${breedFilter}-${ageFilter}-${sizeFilter}-${genderFilter}-${temperamentFilter}`}
+                    searchQuery={searchQuery}
+                    onDogClick={handleDogClick}
+                    breedFilter={breedFilter}
+                    ageFilter={ageFilter}
+                    sizeFilter={sizeFilter}
+                    genderFilter={genderFilter}
+                    temperamentFilter={temperamentFilter}
+                />
             </div>
         </main>
     )
