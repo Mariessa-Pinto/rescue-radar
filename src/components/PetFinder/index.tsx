@@ -22,6 +22,7 @@ export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFil
     if (sizeFilter) apiUrl += `&size=${sizeFilter}`;
     if (genderFilter) apiUrl += `&gender=${genderFilter}`;
     if (temperamentFilter) apiUrl += `&temperament=${temperamentFilter}`;
+    if (searchQuery) apiUrl += `&q=${encodeURIComponent(searchQuery)}`;
 
     const response = await fetch(apiUrl, {
       method: "GET",

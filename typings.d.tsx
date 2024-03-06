@@ -45,6 +45,10 @@ interface IViewDogProps {
   dog: IDog;
   onClose: () => void;
 }
+
+interface IFilter {
+  onClose: () => void;
+}
   
 
 interface QuizQuestionsProps {

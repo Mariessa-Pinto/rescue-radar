@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import Image from 'next/image'
 import { useState } from 'react'
 import PetFinder from '@/components/PetFinder'
+import FilterDogs from '@/components/FilterDogs'
 
 
 export default function AvailableDogs() {
@@ -12,6 +13,7 @@ export default function AvailableDogs() {
     const [sizeFilter, setSizeFilter] = useState<string>('');
     const [genderFilter, setGenderFilter] = useState<string>('');
     const [temperamentFilter, setTemperamentFilter] = useState<string>('');
+    const [selectedFilter, setSelectedFilter] = useState<IFilter | null>(null);
 
     const handleDogClick = (dog: IDog) => {
         setSelectedDog(dog);
@@ -39,6 +41,16 @@ export default function AvailableDogs() {
         }
     };
 
+    const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            applyFilter('search', searchQuery);
+        }
+    };
+
+    const handleFilterClick = (filter: IFilter) => {
+        setSelectedFilter(filter);
+    };
+
     return (
         <main className={`bg-contain bg-100% flex min-h-screen flex-col items-center justify-start bg-bone bg-repeat-y`}>
             <Navbar />
@@ -63,6 +75,7 @@ export default function AvailableDogs() {
                                 placeholder="Search dogs..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
+                                onKeyDown={handleSearchKeyDown}
                             />
                         </div>
                     </div>
@@ -95,6 +108,7 @@ export default function AvailableDogs() {
                     temperamentFilter={temperamentFilter}
                 />
             </div>
+            {selectedFilter && <FilterDogs onClose={() => setSelectedFilter(null)} />}
         </main>
     )
 }
