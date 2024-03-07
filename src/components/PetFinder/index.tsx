@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import ViewDog from "../ViewDog";
 
-export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFilter, sizeFilter, genderFilter, temperamentFilter }: IPetFinderProps) {
+export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFilter, sizeFilter, genderFilter, goodWithChildrenFilter, goodWithCatsFilter, goodWithDogsFilter }: IPetFinderProps) {
   const apiKey = process.env.NEXT_PUBLIC_KEY;
   const secret = process.env.NEXT_PUBLIC_SECRET;
   const [dogs, setDogs] = useState<IDog[]>([]);
@@ -11,7 +11,7 @@ export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFil
 
   useEffect(() => {
     fetchData();
-}, [searchQuery, breedFilter, ageFilter, sizeFilter, genderFilter, temperamentFilter, page]);
+}, [searchQuery, breedFilter, ageFilter, sizeFilter, genderFilter, goodWithChildrenFilter, goodWithCatsFilter, goodWithDogsFilter, page]);
 
   const fetchData = async () => {
     const accessToken = await getToken();
@@ -21,7 +21,9 @@ export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFil
     if (ageFilter) apiUrl += `&age=${ageFilter}`;
     if (sizeFilter) apiUrl += `&size=${sizeFilter}`;
     if (genderFilter) apiUrl += `&gender=${genderFilter}`;
-    if (temperamentFilter) apiUrl += `&temperament=${temperamentFilter}`;
+    if (goodWithChildrenFilter) apiUrl += `&good_with_children=${goodWithChildrenFilter}`;
+    if (goodWithCatsFilter) apiUrl += `&good_with_cats=${goodWithCatsFilter}`;
+    if (goodWithDogsFilter) apiUrl += `&good_with_dogs=${goodWithDogsFilter}`;
     if (searchQuery) apiUrl += `&q=${encodeURIComponent(searchQuery)}`;
 
     const response = await fetch(apiUrl, {

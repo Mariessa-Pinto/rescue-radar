@@ -38,7 +38,9 @@ interface IAdopt {
     ageFilter: string;
     sizeFilter: string;
     genderFilter: string;
-    temperamentFilter: string;
+    goodWithChildrenFilter: boolean;
+    goodWithCatsFilter: boolean;
+    goodWithDogsFilter: boolean;
 }
 
 interface IViewDogProps {
@@ -48,8 +50,17 @@ interface IViewDogProps {
 
 interface IFilter {
   onClose: () => void;
+  onApplyFilters: (
+    selectedBreeds: string[],
+    selectedAges: string[],
+    selectedSizes: string[],
+    selectedGenders: string[],
+    goodWithChildren: boolean,
+    goodWithCats: boolean,
+    goodWithDogs: boolean
+  ) => void;
 }
-  
+
 
 interface QuizQuestionsProps {
   label: string;
