@@ -4,7 +4,6 @@ import { useState } from 'react'
 import PetFinder from '@/components/PetFinder'
 import FilterDogs from '@/components/FilterDogs'
 
-
 export default function AvailableDogs() {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [selectedDog, setSelectedDog] = useState<IDog | null>(null);
@@ -12,29 +11,38 @@ export default function AvailableDogs() {
     const [ageFilter, setAgeFilter] = useState<string>('');
     const [sizeFilter, setSizeFilter] = useState<string>('');
     const [genderFilter, setGenderFilter] = useState<string>('');
-    const [temperamentFilter, setTemperamentFilter] = useState<string>('');
+    const [goodWithChildrenFilter, setGoodWithChildrenFilter] = useState<boolean>(false);
+    const [goodWithCatsFilter, setGoodWithCatsFilter] = useState<boolean>(false);
+    const [goodWithDogsFilter, setGoodWithDogsFilter] = useState<boolean>(false);
     const [selectedFilter, setSelectedFilter] = useState<IFilter | null>(null);
+    const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
     const handleDogClick = (dog: IDog) => {
         setSelectedDog(dog);
     };
 
-    const applyFilter = (filter: string, value: string) => {
+    const applyFilter = (filter: string, value: string | boolean) => {
         switch (filter) {
             case 'breed':
-                setBreedFilter(value);
+                setBreedFilter(value as string);
                 break;
             case 'age':
-                setAgeFilter(value.toLowerCase());
+                setAgeFilter(typeof value === 'string' ? value.toLowerCase() : '');
                 break;
             case 'size':
-                setSizeFilter(value.toLowerCase());
+                setSizeFilter(typeof value === 'string' ? value.toLowerCase() : '');
                 break;
             case 'gender':
-                setGenderFilter(value);
+                setGenderFilter(value as string);
                 break;
-            case 'temperament':
-                setTemperamentFilter(value);
+            case 'goodWithChildren':
+                setGoodWithChildrenFilter(value as boolean);
+                break;
+            case 'goodWithCats':
+                setGoodWithCatsFilter(value as boolean);
+                break;
+            case 'goodWithDogs':
+                setGoodWithDogsFilter(value as boolean);
                 break;
             default:
                 break;
@@ -49,6 +57,14 @@ export default function AvailableDogs() {
 
     const handleFilterClick = (filter: IFilter) => {
         setSelectedFilter(filter);
+    };
+
+    const handleFilterIconClick = () => {
+        setFilterOpen(true);
+    };
+
+    const handleCloseFilterOverlay = () => {
+        setFilterOpen(false);
     };
 
     return (
@@ -83,6 +99,7 @@ export default function AvailableDogs() {
             </div>
             <div className={`flex flex-row justify-evenly lg:justify-start items-center md:w-11/12 lg:w-9/12 mb-2 md:mb-8 lg:mt-8 lg:mb-4`}>
                 <Image
+                    onClick={handleFilterIconClick}
                     src={'/list/filter.svg'}
                     alt='filter icon'
                     width={40}
@@ -96,19 +113,42 @@ export default function AvailableDogs() {
                     <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base md:block hidden`} onClick={() => applyFilter('age', 'senior')}>Senior</button>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-2 md:gap-5 md:w-11/12 lg:w-9-12">
+            <div className={`flex flex-wrap justify-center gap-2 md:gap-5 md:w-11/12 lg:w-9-12`}>
                 <PetFinder
-                    key={`${breedFilter}-${ageFilter}-${sizeFilter}-${genderFilter}-${temperamentFilter}`}
+                    key={`${breedFilter}-${ageFilter}-${sizeFilter}-${genderFilter}-${goodWithChildrenFilter}-${goodWithCatsFilter}-${goodWithDogsFilter}`}
                     searchQuery={searchQuery}
                     onDogClick={handleDogClick}
                     breedFilter={breedFilter}
                     ageFilter={ageFilter}
                     sizeFilter={sizeFilter}
                     genderFilter={genderFilter}
-                    temperamentFilter={temperamentFilter}
+                    goodWithChildrenFilter={goodWithChildrenFilter}
+                    goodWithCatsFilter={goodWithCatsFilter}
+                    goodWithDogsFilter={goodWithDogsFilter}
                 />
             </div>
-            {selectedFilter && <FilterDogs onClose={() => setSelectedFilter(null)} />}
+            {filterOpen && (
+                <FilterDogs
+                    onClose={handleCloseFilterOverlay}
+                    onApplyFilters={(
+                        selectedBreeds: string[],
+                        selectedAges: string[],
+                        selectedSizes: string[],
+                        selectedGenders: string[],
+                        goodWithChildren: boolean,
+                        goodWithCats: boolean,
+                        goodWithDogs: boolean,
+                    ) => {
+                        setBreedFilter(selectedBreeds.join(','));
+                        setAgeFilter(selectedAges.join(','));
+                        setSizeFilter(selectedSizes.join(','));
+                        setGenderFilter(selectedGenders.join(','));
+                        setGoodWithChildrenFilter(goodWithChildren);
+                        setGoodWithCatsFilter(goodWithCats);
+                        setGoodWithDogsFilter(goodWithDogs);
+                    }}
+                />
+            )}
         </main>
     )
 }
