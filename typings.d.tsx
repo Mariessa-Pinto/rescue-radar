@@ -22,6 +22,7 @@ interface IDog {
 }
 
 interface IAdopt {
+  id: string,
     name: string;
     max_weight_female: number | string;
     max_weight_male: number | string;
