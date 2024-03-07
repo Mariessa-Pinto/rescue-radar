@@ -58,7 +58,8 @@ const QuizContainer = () => {
                 throw new Error(`Error: ${response.statusText}`);
             }
             const matchedDogData = await response.json();
-            setMatchedDog(matchedDogData);
+            console.log('Matched Dog Data:', matchedDogData);
+            setMatchedDog(matchedDogData); 
         } catch (error) {
             console.error('Error:', error)
         }

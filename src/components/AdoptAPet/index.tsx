@@ -67,18 +67,19 @@ export default function AdoptAPet() {
   return (
     <div>
       <h1>List of Dogs:</h1>
-
-      {dg.map((dog, ind) => (
-        <div key={ind}>
-          <p>Dog name: {dog.name}</p>
-          <p>Female weight: {dog.max_weight_female}</p>
-          <p>Male Weight: {dog.max_weight_male}</p>
-          <p>Shedding level: {dog.shedding}</p>
-          <p>Energy level: {dog.energy}</p>
-          <p>Good with other dogs: {dog.good_with_other_dogs}</p>
-          <p>Good with children: {dog.good_with_children}</p>
+      {matchedDog ? (
+        <div key={matchedDog.id}>
+          <p>Dog name: {matchedDog.name}</p>
+          <p>Female weight: {matchedDog.max_weight_female}</p>
+          <p>Male Weight: {matchedDog.max_weight_male}</p>
+          <p>Shedding level: {matchedDog.shedding}</p>
+          <p>Energy level: {matchedDog.energy}</p>
+          <p>Good with other dogs: {matchedDog.good_with_other_dogs}</p>
+          <p>Good with children: {matchedDog.good_with_children}</p>
         </div>
-      ))}
+      ) : (
+        <p>No matching dog found.</p>
+      )}
 
       <button onClick={() => setOffset((prevOffset) => prevOffset + 20)}>Load More</button>
     </div>
