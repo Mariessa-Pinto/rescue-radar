@@ -83,7 +83,6 @@ export default function Navbar() {
                     <div className={`flex flex-row gap-4`}>
                         <Link className={`font-bold`} href="/">Home</Link>
                         <Link className={`font-bold`} href="/quiz">Quiz</Link>
-                        <Link className={`font-bold`} href="/whyAdopt">Why Adopt</Link>
                         <Link className={`font-bold`} href="/availableDogs">Available Dogs</Link>
                     </div>
                 </div>

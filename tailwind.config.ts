@@ -49,6 +49,7 @@ const config: Config = {
         'listBanner': "url('/list/listBanner.png')",
         'navCircle': "url('/nav/navCircle.svg')",
         'oval': "url('/filter/oval.svg')",
+        'listBg': "url('/list/listBg2.svg')",
       },
       backgroundSize: {
         'auto': 'auto',

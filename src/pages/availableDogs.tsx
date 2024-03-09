@@ -68,7 +68,7 @@ export default function AvailableDogs() {
     };
 
     return (
-        <main className={`bg-contain bg-100% flex min-h-screen flex-col items-center justify-start bg-bone bg-repeat-y`}>
+        <main className={`bg-contain bg-200% flex min-h-screen flex-col items-center justify-start bg-listBg bg-repeat-y`}>
             <Navbar />
             <div className={`lg:bg-listBanner lg:w-full lg:h-384 lg:bg-cover`}>
                 <div className='lg:h-full md:flex md:flex-row lg:flex-col lg:justify-center md:items-center md:pb-4'>
@@ -106,11 +106,11 @@ export default function AvailableDogs() {
                     height={40}
                 />
                 <div className={`flex gap-1 md:gap-2`}>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('size', 'large')}>Large</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('age', 'baby')}>Baby</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('size', 'small')}>Small</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base md:block hidden`} onClick={() => applyFilter('age', 'adult')}>Adult</button>
-                    <button className={`rounded-full border w-28 h-7 border-blue font-outfit text-base md:block hidden`} onClick={() => applyFilter('age', 'senior')}>Senior</button>
+                    <button className={`rounded-full border bg-white w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('size', 'large')}>Large</button>
+                    <button className={`rounded-full border bg-white w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('age', 'baby')}>Baby</button>
+                    <button className={`rounded-full border bg-white w-28 h-7 border-blue font-outfit text-base`} onClick={() => applyFilter('size', 'small')}>Small</button>
+                    <button className={`rounded-full border bg-white w-28 h-7 border-blue font-outfit text-base md:block hidden`} onClick={() => applyFilter('age', 'adult')}>Adult</button>
+                    <button className={`rounded-full border bg-white w-28 h-7 border-blue font-outfit text-base md:block hidden`} onClick={() => applyFilter('age', 'senior')}>Senior</button>
                 </div>
             </div>
             <div className={`flex flex-wrap justify-center gap-2 md:gap-5 md:w-11/12 lg:w-9-12`}>
