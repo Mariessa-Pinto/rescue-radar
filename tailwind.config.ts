@@ -48,6 +48,8 @@ const config: Config = {
         'halfCircle': "url('/list/halfCircle.svg')",
         'listBanner': "url('/list/listBanner.png')",
         'navCircle': "url('/nav/navCircle.svg')",
+        'oval': "url('/filter/oval.svg')",
+        'listBg': "url('/list/listBg2.svg')",
       },
       backgroundSize: {
         'auto': 'auto',
@@ -64,7 +66,8 @@ const config: Config = {
         'bottom-right-lg': 'calc(100%) 10px',
         'top-right': 'calc(100%) 0px',
         'bottom': 'calc(100%) 400px',
-        'bottom-md': 'calc(100%) 200px'
+        'bottom-md': 'calc(100%) 200px',
+        'filter-bottom': 'calc(100%) 80px'
       },
       borderRadius: {
         'xl': '100px',

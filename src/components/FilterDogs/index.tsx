@@ -13,6 +13,14 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
     const [goodWithCats, setGoodWithCats] = useState<boolean>(false);
     const [goodWithDogs, setGoodWithDogs] = useState<boolean>(false);
 
+    const [showBreeds, setShowBreeds] = useState<boolean>(false);
+    const [showAge, setShowAge] = useState<boolean>(false);
+    const [showSize, setShowSize] = useState<boolean>(false);
+    const [showGender, setShowGender] = useState<boolean>(false);
+    const [showGoodWith, setShowGoodWith] = useState<boolean>(false);
+
+    const [searchTerm, setSearchTerm] = useState('');
+
     const getToken = async () => {
         const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
             method: "POST",
@@ -104,112 +112,184 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
         onClose();
     };
 
+    const filteredBreeds = dogBreeds.filter(breed =>
+        breed.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const resetFilters = () => {
+        setSelectedBreeds([]);
+        setAgeFilters([]);
+        setSizeFilters([]);
+        setGenderFilters([]);
+        setGoodWithChildren(false);
+        setGoodWithCats(false);
+        setGoodWithDogs(false);
+    };
+
     return (
         <div className={`fixed top-20 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-800 bg-opacity-75 z-50`}>
-            <div className={`bg-white w-full h-full flex flex-col items-center p-10 gap-10 bg-no-repeat bg-halfCircle bg-top-right`}>
-                <button className={`absolute top-2 right-2 text-white font-outfit font-outfit text-h1 font-extrabold`} onClick={onClose}>
+            <div className={`bg-white bg-100% w-full overflow-y-scroll pb-28 h-full flex flex-col items-center bg-no-repeat bg-oval bg-filter-bottom`}>
+                <button className={`absolute top-2 right-80 text-black font-outfit font-outfit text-h1 font-extrabold`} onClick={onClose}>
                     X
                 </button>
+
                 {/** Breeds */}
-                <div className={`max-h-40 overflow-y-auto`}>
-                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}>Select Breeds:</p>
-                    {dogBreeds.map((breed) => (
-                        <div key={breed} className={`flex items-center`}>
+                <div className={`pt-44 md:pt-64 lg:pt-96 md:w-10/12 w-11/12 lg:w-7/12`}>
+                    <div onClick={() => setShowBreeds(!showBreeds)} className={`cursor-pointer`}>
+                        <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Breeds:</p>
+                    </div>
+                    {showBreeds && (
+                            <div className={`mt-neg2 flex items-end justify-end w-11/12 lg:w-full`}>
                             <input
-                                type="checkbox"
-                                id={breed}
-                                value={breed}
-                                checked={selectedBreeds.includes(breed)}
-                                onChange={() => handleCheckboxChange(breed)}
+                                type="text"
+                                placeholder="Search breed..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className={`lg:w-96 border-2 border-blue rounded-xl p-1 pl-3 mb-2 focus:border-blue outline-none`}
                             />
-                            <label htmlFor={breed} className={`ml-2`}>{breed}</label>
                         </div>
-                    ))}
+                    )}
+                    {showBreeds && (
+                        <div className={`max-h-40 lg:max-h-80 overflow-y-auto`}>
+                            {filteredBreeds.map((breed) => (
+                                <div key={breed} className={`flex items-center`}>
+                                    <input
+                                        type="checkbox"
+                                        id={breed}
+                                        value={breed}
+                                        checked={selectedBreeds.includes(breed)}
+                                        onChange={() => handleCheckboxChange(breed)}
+                                        className={`appearance-none w-4 h-4 border-2 border-white rounded-full checked:bg-white focus:outline-none focus:border-blue-500`}
+                                    />
+                                    <label htmlFor={breed} className={`ml-2 text-white font-outfit text-p font-light`}>{breed}</label>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    <hr className="my-4 border-white" />
                 </div>
+
                 {/** Age */}
-                <div>
-                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}>Select Age:</p>
-                    {['baby', 'young', 'adult', 'senior'].map((age) => (
-                        <div key={age} className={`flex items-center`}>
-                            <input
-                                type="checkbox"
-                                id={age}
-                                value={age}
-                                checked={ageFilters.includes(age)}
-                                onChange={() => handleAgeCheckboxChange(age)}
-                            />
-                            <label htmlFor={age} className={`ml-2`}>{age}</label>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
+                    <div onClick={() => setShowAge(!showAge)} className={`cursor-pointer`}>
+                        <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Age:</p>
+                    </div>
+                    {showAge && (
+                        <div>
+                            {['baby', 'young', 'adult', 'senior'].map((age) => (
+                                <div key={age} className={`flex items-center`}>
+                                    <input
+                                        type="checkbox"
+                                        id={age}
+                                        value={age}
+                                        checked={ageFilters.includes(age)}
+                                        onChange={() => handleAgeCheckboxChange(age)}
+                                        className={`appearance-none w-4 h-4 border-2 border-white rounded-full checked:bg-white focus:outline-none focus:border-blue-500`}
+                                    />
+                                    <label htmlFor={age} className={`ml-2 text-white font-outfit text-p font-light`}>{age.charAt(0).toUpperCase() + age.slice(1)}</label>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    )}
+                    <hr className="my-4 border-white" />
                 </div>
+
                 {/** Size */}
-                <div>
-                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}>Select Size:</p>
-                    {['small', 'medium', 'large', 'xlarge'].map((size) => (
-                        <div key={size} className={`flex items-center`}>
-                            <input
-                                type="checkbox"
-                                id={size}
-                                value={size}
-                                checked={sizeFilters.includes(size)}
-                                onChange={() => handleSizeCheckboxChange(size)}
-                            />
-                            <label htmlFor={size} className={`ml-2`}>{size}</label>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
+                    <div onClick={() => setShowSize(!showSize)} className={`cursor-pointer`}>
+                        <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Size:</p>
+                    </div>
+                    {showSize && (
+                        <div>
+                            {['small', 'medium', 'large', 'xlarge'].map((size) => (
+                                <div key={size} className={`flex items-center`}>
+                                    <input
+                                        type="checkbox"
+                                        id={size}
+                                        value={size}
+                                        checked={sizeFilters.includes(size)}
+                                        onChange={() => handleSizeCheckboxChange(size)}
+                                        className={`appearance-none w-4 h-4 border-2 border-white rounded-full checked:bg-white focus:outline-none focus:border-blue-500`}
+                                    />
+                                    <label htmlFor={size} className={`ml-2 text-white font-outfit text-p font-light`}>{size.charAt(0).toUpperCase() + size.slice(1)}</label>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    )}
+                    <hr className="my-4 border-white" />
                 </div>
+
                 {/** Gender */}
-                <div>
-                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}>Select Gender:</p>
-                    {['male', 'female', 'unknown'].map((gender) => (
-                        <div key={gender} className={`flex items-center`}>
-                            <input
-                                type="checkbox"
-                                id={gender}
-                                value={gender}
-                                checked={genderFilters.includes(gender)}
-                                onChange={() => handleGenderCheckboxChange(gender)}
-                            />
-                            <label htmlFor={gender} className={`ml-2`}>{gender}</label>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
+                    <div onClick={() => setShowGender(!showGender)} className={`cursor-pointer`}>
+                        <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Gender:</p>
+                    </div>
+                    {showGender && (
+                        <div>
+                            {['male', 'female', 'unknown'].map((gender) => (
+                                <div key={gender} className={`flex items-center`}>
+                                    <input
+                                        type="checkbox"
+                                        id={gender}
+                                        value={gender}
+                                        checked={genderFilters.includes(gender)}
+                                        onChange={() => handleGenderCheckboxChange(gender)}
+                                        className={`appearance-none w-4 h-4 border-2 border-white rounded-full checked:bg-white focus:outline-none focus:border-blue-500`}
+                                    />
+                                    <label htmlFor={gender} className={`ml-2 text-white font-outfit text-p font-light`}>{gender.charAt(0).toUpperCase() + gender.slice(1)}</label>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    )}
+                    <hr className="my-4 border-white" />
                 </div>
+
                 {/** Good With */}
-                <div >
-                    <p className={`font-outfit text-h4 font-medium md:text-th4 lg:text-wh4`}>Good With:</p>
-                    <div className={`flex items-center`}>
-                        <input
-                            type="checkbox"
-                            id="children"
-                            checked={goodWithChildren}
-                            onChange={() => setGoodWithChildren(!goodWithChildren)}
-                        />
-                        <label htmlFor="children" className={`ml-2`}>Children</label>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
+                    <div onClick={() => setShowGoodWith(!showGoodWith)} className={`cursor-pointer`}>
+                        <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Good With:</p>
                     </div>
-                    <div className={`flex items-center`}>
-                        <input
-                            type="checkbox"
-                            id="cats"
-                            checked={goodWithCats}
-                            onChange={() => setGoodWithCats(!goodWithCats)}
-                        />
-                        <label htmlFor="cats" className={`ml-2`}>Cats</label>
-                    </div>
-                    <div className={`flex items-center`}>
-                        <input
-                            type="checkbox"
-                            id="dogs"
-                            checked={goodWithDogs}
-                            onChange={() => setGoodWithDogs(!goodWithDogs)}
-                        />
-                        <label htmlFor="dogs" className={`ml-2`}>Dogs</label>
-                    </div>
+                    {showGoodWith && (
+                        <div>
+                            <div className={`flex items-center`}>
+                                <input
+                                    type="checkbox"
+                                    id="children"
+                                    checked={goodWithChildren}
+                                    onChange={() => setGoodWithChildren(!goodWithChildren)}
+                                    className={`appearance-none w-4 h-4 border-2 border-white rounded-full checked:bg-white focus:outline-none focus:border-blue-500`}
+                                />
+                                <label htmlFor="children" className={`ml-2 text-white font-outfit text-p font-light`}>Children</label>
+                            </div>
+                            <div className={`flex items-center`}>
+                                <input
+                                    type="checkbox"
+                                    id="cats"
+                                    checked={goodWithCats}
+                                    onChange={() => setGoodWithCats(!goodWithCats)}
+                                    className={`appearance-none w-4 h-4 border-2 border-white rounded-full checked:bg-white focus:outline-none focus:border-blue-500`}
+                                />
+                                <label htmlFor="cats" className={`ml-2 text-white font-outfit text-p font-light`}>Cats</label>
+                            </div>
+                            <div className={`flex items-center`}>
+                                <input
+                                    type="checkbox"
+                                    id="dogs"
+                                    checked={goodWithDogs}
+                                    onChange={() => setGoodWithDogs(!goodWithDogs)}
+                                    className={`appearance-none w-4 h-4 border-2 border-white rounded-full checked:bg-white focus:outline-none focus:border-blue-500`}
+                                />
+                                <label htmlFor="dogs" className={`ml-2 text-white font-outfit text-p font-light`}>Dogs</label>
+                            </div>
+                        </div>
+                    )}
+                    <hr className="my-4 border-white" />
                 </div>
-                <div className={`flex flex-row`}>
-                    <button className={`rounded-full border-2 w-60 h-14 border-blue font-outfit text-h4 font-medium bg-white shadow-lg lg:w-96 lg:h-16 lg:text-wh2`}>
+                <div className={`flex flex-row justify-between w-11/12 md:w-10/12 lg:w-7/12`}>
+                    <button onClick={resetFilters} className={`rounded-full border-2 w-44 h-10 font-outfit text-p font-medium bg-white shadow-lg lg:w-96 lg:h-16`}>
                         Reset Filters
                     </button>
-                    <button onClick={handleApplyFilters} className={`rounded-full border-2 w-60 h-14 border-blue font-outfit text-h4 font-medium bg-white shadow-lg lg:w-96 lg:h-16 lg:text-wh2`}>
+                    <button onClick={handleApplyFilters} className={`rounded-full border-2 w-44 h-10 font-outfit text-p font-medium bg-white shadow-lg lg:w-96 lg:h-16`}>
                         Apply Filters
                     </button>
                 </div>
