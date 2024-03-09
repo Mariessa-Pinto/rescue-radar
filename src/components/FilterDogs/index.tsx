@@ -128,13 +128,13 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
 
     return (
         <div className={`fixed top-20 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-800 bg-opacity-75 z-50`}>
-            <div className={`bg-white w-full overflow-y-auto pb-28 h-full flex flex-col items-center bg-no-repeat bg-oval bg-filter-bottom`}>
+            <div className={`bg-white bg-100% w-full overflow-y-scroll pb-28 h-full flex flex-col items-center bg-no-repeat bg-oval bg-filter-bottom`}>
                 <button className={`absolute top-2 right-4 text-black font-outfit font-outfit text-h1 font-extrabold`} onClick={onClose}>
                     X
                 </button>
 
                 {/** Breeds */}
-                <div className={`pt-32 w-11/12`}>
+                <div className={`pt-44 md:pt-64 md:w-10/12 w-11/12`}>
                     <div onClick={() => setShowBreeds(!showBreeds)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Breeds:</p>
                     </div>
@@ -170,7 +170,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Age */}
-                <div className={`w-11/12`}>
+                <div className={`w-11/12 md:w-10/12`}>
                     <div onClick={() => setShowAge(!showAge)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Age:</p>
                     </div>
@@ -195,7 +195,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Size */}
-                <div className={`w-11/12`}>
+                <div className={`w-11/12 md:w-10/12`}>
                     <div onClick={() => setShowSize(!showSize)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Size:</p>
                     </div>
@@ -220,7 +220,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Gender */}
-                <div className={`w-11/12`}>
+                <div className={`w-11/12 md:w-10/12`}>
                     <div onClick={() => setShowGender(!showGender)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Gender:</p>
                     </div>
@@ -245,7 +245,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Good With */}
-                <div className={`w-11/12`}>
+                <div className={`w-11/12 md:w-10/12`}>
                     <div onClick={() => setShowGoodWith(!showGoodWith)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Good With:</p>
                     </div>
@@ -285,7 +285,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                     )}
                     <hr className="my-4 border-white" />
                 </div>
-                <div className={`flex flex-row justify-between w-11/12`}>
+                <div className={`flex flex-row justify-between w-11/12 md:w-10/12`}>
                     <button onClick={resetFilters} className={`rounded-full border-2 w-44 h-10 font-outfit text-p font-medium bg-white shadow-lg lg:w-96 lg:h-16`}>
                         Reset Filters
                     </button>

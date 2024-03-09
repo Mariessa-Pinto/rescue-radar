@@ -66,7 +66,7 @@ const config: Config = {
         'top-right': 'calc(100%) 0px',
         'bottom': 'calc(100%) 400px',
         'bottom-md': 'calc(100%) 200px',
-        'filter-bottom': 'calc(100%) 50px'
+        'filter-bottom': 'calc(100%) 80px'
       },
       borderRadius: {
         'xl': '100px',
