@@ -129,28 +129,28 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
     return (
         <div className={`fixed top-20 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-800 bg-opacity-75 z-50`}>
             <div className={`bg-white bg-100% w-full overflow-y-scroll pb-28 h-full flex flex-col items-center bg-no-repeat bg-oval bg-filter-bottom`}>
-                <button className={`absolute top-2 right-4 text-black font-outfit font-outfit text-h1 font-extrabold`} onClick={onClose}>
+                <button className={`absolute top-2 right-80 text-black font-outfit font-outfit text-h1 font-extrabold`} onClick={onClose}>
                     X
                 </button>
 
                 {/** Breeds */}
-                <div className={`pt-44 md:pt-64 md:w-10/12 w-11/12`}>
+                <div className={`pt-44 md:pt-64 lg:pt-96 md:w-10/12 w-11/12 lg:w-7/12`}>
                     <div onClick={() => setShowBreeds(!showBreeds)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Breeds:</p>
                     </div>
                     {showBreeds && (
-                            <div className={`mt-neg2 flex items-end justify-end w-11/12`}>
+                            <div className={`mt-neg2 flex items-end justify-end w-11/12 lg:w-full`}>
                             <input
                                 type="text"
                                 placeholder="Search breed..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className={`border-2 border-blue rounded-xl p-1 pl-3 mb-2 focus:border-blue outline-none`}
+                                className={`lg:w-96 border-2 border-blue rounded-xl p-1 pl-3 mb-2 focus:border-blue outline-none`}
                             />
                         </div>
                     )}
                     {showBreeds && (
-                        <div className={`max-h-40 overflow-y-auto`}>
+                        <div className={`max-h-40 lg:max-h-80 overflow-y-auto`}>
                             {filteredBreeds.map((breed) => (
                                 <div key={breed} className={`flex items-center`}>
                                     <input
@@ -170,7 +170,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Age */}
-                <div className={`w-11/12 md:w-10/12`}>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
                     <div onClick={() => setShowAge(!showAge)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Age:</p>
                     </div>
@@ -195,7 +195,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Size */}
-                <div className={`w-11/12 md:w-10/12`}>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
                     <div onClick={() => setShowSize(!showSize)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Size:</p>
                     </div>
@@ -220,7 +220,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Gender */}
-                <div className={`w-11/12 md:w-10/12`}>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
                     <div onClick={() => setShowGender(!showGender)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Gender:</p>
                     </div>
@@ -245,7 +245,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                 </div>
 
                 {/** Good With */}
-                <div className={`w-11/12 md:w-10/12`}>
+                <div className={`w-11/12 md:w-10/12 lg:w-7/12`}>
                     <div onClick={() => setShowGoodWith(!showGoodWith)} className={`cursor-pointer`}>
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Good With:</p>
                     </div>
@@ -285,7 +285,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                     )}
                     <hr className="my-4 border-white" />
                 </div>
-                <div className={`flex flex-row justify-between w-11/12 md:w-10/12`}>
+                <div className={`flex flex-row justify-between w-11/12 md:w-10/12 lg:w-7/12`}>
                     <button onClick={resetFilters} className={`rounded-full border-2 w-44 h-10 font-outfit text-p font-medium bg-white shadow-lg lg:w-96 lg:h-16`}>
                         Reset Filters
                     </button>
