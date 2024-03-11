@@ -46,7 +46,7 @@ const QuizContainer = () => {
 
 
    const fetchAllDogs = async () => {
-    // Fetch all dogs from the API and store them in the state
+  
     try {
       const apiKey = process.env.NEXT_PUBLIC_KEY_TWO;
       const url = `https://api.api-ninjas.com/v1/dogs?min_life_expectancy=1`;
@@ -76,20 +76,36 @@ const QuizContainer = () => {
   }, []);
 
   const findMatchedDog = () => {
-    const matched = allDogs.find((dog) => {
-      return (
-        selectedAnswers.includes(dog.name) ||
-        selectedAnswers.includes(dog.max_weight_female.toString()) ||
-        selectedAnswers.includes(dog.max_weight_male.toString()) ||
-        selectedAnswers.includes(dog.shedding.toString()) ||
-        selectedAnswers.includes(dog.energy.toString()) ||
-        selectedAnswers.includes(dog.good_with_other_dogs.toString()) ||
-        selectedAnswers.includes(dog.good_with_children.toString())
-      );
-    });
-  
-    return matched || null;
-  };
+    const weights: { [key: string]: number } = {
+        'Not very active': 1,
+        "I'm very active and love outdoor activities": 2,
+        "I'm moderately active and enjoy occasional exercise": 3,
+       
+      };
+    
+      const initialBestMatch = { dog: null as IAdopt | null, score: 0 };
+    
+      const matched = allDogs.reduce((bestMatch, dog) => {
+        const score =
+          weights[selectedAnswers[0]] === dog.energy &&
+          weights[selectedAnswers[1]] === dog.max_weight_female &&
+          weights[selectedAnswers[2]] === dog.max_weight_male &&
+          weights[selectedAnswers[3]] === dog.shedding &&
+          weights[selectedAnswers[4]] === dog.good_with_other_dogs &&
+          weights[selectedAnswers[5]] === dog.good_with_children;
+
+    
+        if (score) {
+       
+          const newScore = bestMatch.score + 1;
+          return { dog, score: newScore };
+        }
+    
+        return bestMatch;
+      }, initialBestMatch);
+    
+      return matched.dog;
+    };
 
   const handleSubmit = () => {
     const matchedDog = findMatchedDog();
