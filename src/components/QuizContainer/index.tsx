@@ -1,7 +1,8 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QuizQuestions from '../QuizQuestions';
 import LargeButton from '../LargeButton';
+import { use } from 'chai';
 
 const QuizContainer = () => {
     const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
@@ -70,19 +71,23 @@ const QuizContainer = () => {
     }
   };
 
+  useEffect(() => {
+    fetchAllDogs();
+  }, []);
+
   const findMatchedDog = () => {
     const matched = allDogs.find((dog) => {
       return (
-        dog.name === selectedAnswers[0] &&
-        dog.max_weight_female === selectedAnswers[1] &&
-        dog.max_weight_male === selectedAnswers[2] &&
-        dog.shedding === selectedAnswers[3] &&
-        dog.energy === selectedAnswers[4] &&
-        dog.good_with_other_dogs === selectedAnswers[5] &&
-        dog.good_with_children === selectedAnswers[6]
+        selectedAnswers.includes(dog.name) ||
+        selectedAnswers.includes(dog.max_weight_female.toString()) ||
+        selectedAnswers.includes(dog.max_weight_male.toString()) ||
+        selectedAnswers.includes(dog.shedding.toString()) ||
+        selectedAnswers.includes(dog.energy.toString()) ||
+        selectedAnswers.includes(dog.good_with_other_dogs.toString()) ||
+        selectedAnswers.includes(dog.good_with_children.toString())
       );
     });
-
+  
     return matched || null;
   };
 
