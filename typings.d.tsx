@@ -30,6 +30,8 @@ interface IAdopt {
     energy: number | string;
     good_with_other_dogs: number | string;
     good_with_children: number | string;
+    dog: number | string;
+    bestMatch: number | string;
   }
 
   interface IPetFinderProps {
