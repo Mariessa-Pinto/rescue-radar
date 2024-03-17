@@ -103,9 +103,9 @@ const QuizContainer = () => {
           "I'm allergic to dogs": number;
           "I prefer hypoallergenic breeds": number;
         } = {
-          "No allergies": 1,  
-          "I'm allergic to dogs": 5,
-          "I prefer hypoallergenic breeds": 5,
+          "No allergies": 5,  
+          "I'm allergic to dogs": 1,
+          "I prefer hypoallergenic breeds": 1,
         };
       
         const sheddingScore = sheddingMap[answer as keyof typeof sheddingMap];

@@ -46,43 +46,47 @@ export default function AdoptAPet() {
           currentPage++;
         }
     
+        const ENERGY_MULTIPLIER = 3;
+const SHEDDING_MULTIPLIER = 3;
+const WEIGHT_MULTIPLIER = 3;
 
       
   allMatchedDogs.forEach(dog => {
     let score = 0;
  
+ 
     if (selectedAnswers.includes('Not very active') && dog.energy === 1) {
-      score += 1;
+      score += 1 * ENERGY_MULTIPLIER;
     }
     if (selectedAnswers.includes("I'm very active and love outdoor activities") && dog.energy === 5) {
-      score += 1;
+      score += 1 * ENERGY_MULTIPLIER;
     }
     if (selectedAnswers.includes("I'm moderately active and enjoy occasional exercise") && dog.energy === 3) {
-      score += 1;
+      score += 1 * ENERGY_MULTIPLIER;
     }
-    if (selectedAnswers.includes("No allergies") && dog.shedding === 1) {
-      score += 1;
+    if (selectedAnswers.includes("No allergies") && dog.shedding === 5) {
+      score += 1 * SHEDDING_MULTIPLIER;
     }
-    if (selectedAnswers.includes("I'm allergic to dogs") && dog.shedding === 5) {
-      score += 1;
+    if (selectedAnswers.includes("I'm allergic to dogs") && dog.shedding === 1) {
+      score += 1 * SHEDDING_MULTIPLIER;
     }
-    if (selectedAnswers.includes("I prefer hypoallergenic breeds") && dog.shedding === 5) {
-      score += 1;
+    if (selectedAnswers.includes("I prefer hypoallergenic breeds") && dog.shedding === 1) {
+      score += 1 * SHEDDING_MULTIPLIER;
     }
     if (selectedAnswers.includes("Small (under 20 pounds)") && dog.max_weight_female === 1) {
-      score += 1;
+      score += 1 * WEIGHT_MULTIPLIER;
     }
     if (selectedAnswers.includes("Small (under 20 pounds)") && dog.max_weight_male === 1) {
-      score += 1;
+      score += 1 * WEIGHT_MULTIPLIER;
     }
     if (selectedAnswers.includes("Medium (20-50 pounds)") && dog.max_weight_female === 3) {
-      score += 1;
+      score += 1 * WEIGHT_MULTIPLIER;
     }
     if (selectedAnswers.includes("Medium (20-50 pounds)") && dog.max_weight_male === 3) {
-      score += 1;
+      score += 1 * WEIGHT_MULTIPLIER;
     }
     if (selectedAnswers.includes("Large (over 50 pounds)") && dog.max_weight_female === 5) {
-      score += 1;
+      score += 1 * WEIGHT_MULTIPLIER;
     }
     if (selectedAnswers.includes("Children") && dog.good_with_children === 5) {
       score += 1;
