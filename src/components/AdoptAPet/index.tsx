@@ -23,7 +23,7 @@ export default function AdoptAPet() {
         });
         let allMatchedDogs: IAdopt[] = [];
         let currentPage = 1;
-        const pageSize = 20; // Adjust the page size as needed
+        const pageSize = 20; 
     
         while (true) {
           const apiUrl = `https://api.api-ninjas.com/v1/dogs?${queryParams}&offset=${pageSize * (currentPage - 1)}`;
@@ -40,7 +40,7 @@ export default function AdoptAPet() {
           const dogs = await response.json();
           console.log(`Fetched dogs (page ${currentPage}):`, dogs);
     
-          if (dogs.length === 0) break; // No more dogs available, exit the loop
+          if (dogs.length === 0) break; 
     
           allMatchedDogs = [...allMatchedDogs, ...dogs];
           currentPage++;
@@ -50,8 +50,7 @@ export default function AdoptAPet() {
       
   allMatchedDogs.forEach(dog => {
     let score = 0;
-  
-    // Example: Adjust conditions to match your selectedAnswers structure and dog properties
+ 
     if (selectedAnswers.includes('Not very active') && dog.energy === 1) {
       score += 1;
     }
@@ -91,19 +90,19 @@ export default function AdoptAPet() {
     if (selectedAnswers.includes("Dogs") && dog.good_with_other_dogs === 5) {
       score += 1;
     }
-    // Repeat for other answers and conditions...
+ 
   
-    dog.score = score; // Assign calculated score to each dog
+    dog.score = score; 
   });
   
-  // Filter dogs based on the minimum score, then sort them
+
   const matchedDogs = allMatchedDogs.filter(dog => dog.score >= MINIMUM_SCORE)
                                      .sort((a, b) => b.score - a.score);
   
-  // Continue with your existing logic to handle matchedDogs...
+
   if (matchedDogs.length > 0) {
-    // Use matchedDogs for setting the dg state
-    setDg(matchedDogs.slice(0, 3)); // Example: Taking top 3 matches
+   
+    setDg(matchedDogs.slice(0, 3)); 
   } else {
     setDg([]);
 
@@ -129,7 +128,7 @@ export default function AdoptAPet() {
             <p>Male Weight: {dog.max_weight_male}</p>
             <p>Good with Children: {dog.good_with_children}</p>
             <p>Good with Dogs: {dog.good_with_other_dogs}</p>
-            {/* Display other dog details */}
+          
           </div>
         ))
       ) : (

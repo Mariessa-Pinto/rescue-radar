@@ -103,7 +103,7 @@ const QuizContainer = () => {
           "I'm allergic to dogs": number;
           "I prefer hypoallergenic breeds": number;
         } = {
-          "No allergies": 1,  // Assuming no allergies correspond to lower shedding
+          "No allergies": 1,  
           "I'm allergic to dogs": 5,
           "I prefer hypoallergenic breeds": 5,
         };
@@ -123,7 +123,7 @@ const QuizContainer = () => {
         };
       
         const sizePref = sizeMap[answer as keyof typeof sizeMap];
-        if (!sizePref) return 0; // Handle unexpected answer
+        if (!sizePref) return 0; 
       
         const dogAvgWeight = (Number(dog.max_weight_female) + Number(dog.max_weight_male)) / 2;
         return dogAvgWeight >= sizePref.min && dogAvgWeight <= sizePref.max ? 1 : 0;
@@ -149,10 +149,10 @@ const QuizContainer = () => {
           let score = 0;
           selectedAnswers.forEach((answer, index) => {
             const questionData = questions[index];
-            if (!questionData) return; // Handle unexpected scenario
+            if (!questionData) return; 
       
             const scoringFunction = scoringFunctions[questionData.label.toLowerCase() as keyof typeof scoringFunctions];
-            if (!scoringFunction) return; // Handle unexpected scenario
+            if (!scoringFunction) return; 
       
             score += scoringFunction(dog, answer);
           });
