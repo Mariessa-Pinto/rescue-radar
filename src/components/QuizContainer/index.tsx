@@ -2,12 +2,13 @@
 import { useEffect, useState } from 'react';
 import QuizQuestions from '../QuizQuestions';
 import LargeButton from '../LargeButton';
-import { use } from 'chai';
+import { useRouter } from 'next/router';
 
 const QuizContainer = () => {
     const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
     const [matchedDog, setMatchedDog] = useState<IAdopt | null>(null);
     const [allDogs, setAllDogs] = useState<IAdopt[]>([]);
+    const router = useRouter();
  
 
     const questions: { label: string; question: string; answers: string[] }[] = [
@@ -75,41 +76,107 @@ const QuizContainer = () => {
     fetchAllDogs();
   }, []);
 
-  const findMatchedDog = () => {
-    const weights: { [key: string]: number } = {
-        'Not very active': 1,
-        "I'm very active and love outdoor activities": 2,
-        "I'm moderately active and enjoy occasional exercise": 3,
-       
-      };
-    
-      const initialBestMatch = { dog: null as IAdopt | null, score: 0 };
-    
-      const matched = allDogs.reduce((bestMatch, dog) => {
-        const score =
-          weights[selectedAnswers[0]] === dog.energy &&
-          weights[selectedAnswers[1]] === dog.max_weight_female &&
-          weights[selectedAnswers[2]] === dog.max_weight_male &&
-          weights[selectedAnswers[3]] === dog.shedding &&
-          weights[selectedAnswers[4]] === dog.good_with_other_dogs &&
-          weights[selectedAnswers[5]] === dog.good_with_children;
+  
+ 
+    const scoringFunctions = {
+  
+      energy: (dog: IAdopt, answer: string) => {
+        const energyMap: {
+          [key: string]: number;
+          "Not very active": number;
+          "I'm very active and love outdoor activities": number;
+          "I'm moderately active and enjoy occasional exercise": number;
+        } = {
+          "Not very active": 1,
+          "I'm very active and love outdoor activities": 5,
+          "I'm moderately active and enjoy occasional exercise": 3,
+        };
+      
+        const energyScore = energyMap[answer as keyof typeof energyMap];
+      
+        return dog.energy === energyScore ? 1 : 0;
+      },
+      shedding: (dog: IAdopt, answer: string) => {
+        const sheddingMap: {
+          [key: string]: number;
+          "No allergies": number;
+          "I'm allergic to dogs": number;
+          "I prefer hypoallergenic breeds": number;
+        } = {
+          "No allergies": 1,  // Assuming no allergies correspond to lower shedding
+          "I'm allergic to dogs": 5,
+          "I prefer hypoallergenic breeds": 5,
+        };
+      
+        const sheddingScore = sheddingMap[answer as keyof typeof sheddingMap];
+      
+        return dog.shedding === sheddingScore ? 1 : 0;
+      },
+      
+      size: (dog: IAdopt, answer: string) => {
+        const sizeMap: {
+          [key: string]: { min: number; max: number };
+        } = {
+          "Small (under 20 pounds)": { min: 0, max: 20 },
+          "Medium (20-50 pounds)": { min: 20, max: 50 },
+          "Large (over 50 pounds)": { min: 50, max: Infinity },
+        };
+      
+        const sizePref = sizeMap[answer as keyof typeof sizeMap];
+        if (!sizePref) return 0; // Handle unexpected answer
+      
+        const dogAvgWeight = (Number(dog.max_weight_female) + Number(dog.max_weight_male)) / 2;
+        return dogAvgWeight >= sizePref.min && dogAvgWeight <= sizePref.max ? 1 : 0;
+      },
 
-    
-        if (score) {
-       
-          const newScore = bestMatch.score + 1;
-          return { dog, score: newScore };
+      compatibility: (dog: IAdopt, answer: string) => {
+        let score = 0;
+        if (answer === "Children" && dog.good_with_children) {
+          score += 1;
         }
-    
+        if (answer === "Dogs" && dog.good_with_other_dogs) {
+          score += 1; 
+        }
+        return score;
+      }
+      
+      }
+      const findMatchedDog = () => {
+        let bestMatch = null;
+        let highestScore = -1;
+      
+        allDogs.forEach((dog) => {
+          let score = 0;
+          selectedAnswers.forEach((answer, index) => {
+            const questionData = questions[index];
+            if (!questionData) return; // Handle unexpected scenario
+      
+            const scoringFunction = scoringFunctions[questionData.label.toLowerCase() as keyof typeof scoringFunctions];
+            if (!scoringFunction) return; // Handle unexpected scenario
+      
+            score += scoringFunction(dog, answer);
+          });
+          console.log(`Score for dog ${dog.name}:`, score);
+      
+          if (score > highestScore) {
+            highestScore = score;
+            bestMatch = dog;
+          }
+        });
+        console.log('Highest score:', highestScore);
+      
         return bestMatch;
-      }, initialBestMatch);
-    
-      return matched.dog;
-    };
+      };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    console.log("Submit button clicked");
     const matchedDog = findMatchedDog();
     setMatchedDog(matchedDog);
+    console.log("selectedAnswers at submit:", selectedAnswers);
+     router.push({
+      pathname: '/results',
+      query: { answers: JSON.stringify(selectedAnswers) },
+    });
   };
 
   return (
@@ -127,20 +194,7 @@ const QuizContainer = () => {
         ))}
       </div>
       <LargeButton text="Submit" link='/results' onClick={handleSubmit} />
-      {matchedDog && (
-        <div>
-          <h2>Your Perfect Match:</h2>
-          <p>Dog name: {matchedDog.name}</p>
-         
-          <p>{matchedDog.max_weight_female}</p>
-          <p>{matchedDog.max_weight_male}</p>
-          <p>{matchedDog.shedding}</p>
-          <p>Energy level: {matchedDog.energy}</p>
-          <p>{matchedDog.good_with_other_dogs}</p>
-          <p>{matchedDog.good_with_children}</p>
-          <p></p>
-        </div>
-      )}
+   
     </>
   );
 };
