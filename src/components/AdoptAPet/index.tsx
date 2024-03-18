@@ -128,8 +128,11 @@ const WEIGHT_MULTIPLIER = 5;
       </div>
       {dg.length > 0 ? (
         dg.map((dog, index) => (
-          <div key={index}>
+          <div key={index} className={`flex flex-row gap-5 mb-20`}>
+            <div>
             <Image src={dog.image_link} alt='dog image' width={200} height={200}/>
+            </div> 
+            <div>
             <div className={`flex flex-col mb-5 mt-5`}>
             <p className={`font-bold`}>{dog.name}</p>
             </div>
@@ -139,7 +142,7 @@ const WEIGHT_MULTIPLIER = 5;
             <p>Male Weight: {dog.max_weight_male}</p>
             <p>Good with Children: {dog.good_with_children}</p>
             <p>Good with Dogs: {dog.good_with_other_dogs}</p>
-          
+            </div>
           </div>
         ))
       ) : (
