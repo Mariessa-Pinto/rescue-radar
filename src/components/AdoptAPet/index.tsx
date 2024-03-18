@@ -124,17 +124,17 @@ const WEIGHT_MULTIPLIER = 5;
     <div>
       <div className={`flex flex-col mb-5 mt-5`}>
       <h1 className={`text-h1 font-bold mt-3`}>Your Results</h1>
-      <p>Your Top Breed is...</p>
+      <p className={`text-h4`}>Your Top Breed is...</p>
       </div>
       {dg.length > 0 ? (
         dg.map((dog, index) => (
-          <div key={index} className={`flex flex-row gap-5 mb-20`}>
+          <div key={index} className={`flex flex-row gap-5 mb-20 mt-10 items-start`}>
             <div>
             <Image src={dog.image_link} alt='dog image' width={200} height={200}/>
             </div> 
             <div>
-            <div className={`flex flex-col mb-5 mt-5`}>
-            <p className={`font-bold`}>{dog.name}</p>
+            <div className={`flex flex-col mb-3`}>
+            <p className={`font-bold text-h5`}>{dog.name}</p>
             </div>
             <p>Energy: {dog.energy}</p>
             <p>Shedding: {dog.shedding}</p>
