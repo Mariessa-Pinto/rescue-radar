@@ -14,7 +14,7 @@ export default function AdoptAPet() {
 
     const selectedAnswers = JSON.parse(answersQuery);
 
-    const MINIMUM_SCORE = 2;
+    const MINIMUM_SCORE = 3;
 
     const fetchDogs = async () => {
       try {
@@ -48,7 +48,7 @@ export default function AdoptAPet() {
     
         const ENERGY_MULTIPLIER = 3;
 const SHEDDING_MULTIPLIER = 3;
-const WEIGHT_MULTIPLIER = 3;
+const WEIGHT_MULTIPLIER = 5;
 
       
   allMatchedDogs.forEach(dog => {
