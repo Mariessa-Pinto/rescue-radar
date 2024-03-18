@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export default function AdoptAPet() {
   const [dg, setDg] = useState<IAdopt[]>([]);
@@ -121,11 +122,17 @@ const WEIGHT_MULTIPLIER = 5;
 
   return (
     <div>
-      <h1>Top Matched Dogs:</h1>
+      <div className={`flex flex-col mb-5 mt-5`}>
+      <h1 className={`text-h1 font-bold mt-3`}>Your Results</h1>
+      <p>Your Top Breed is...</p>
+      </div>
       {dg.length > 0 ? (
         dg.map((dog, index) => (
           <div key={index}>
-            <p>Dog name: {dog.name}</p>
+            <Image src={dog.image_link} alt='dog image' width={200} height={200}/>
+            <div className={`flex flex-col mb-5 mt-5`}>
+            <p className={`font-bold`}>{dog.name}</p>
+            </div>
             <p>Energy: {dog.energy}</p>
             <p>Shedding: {dog.shedding}</p>
             <p>Female Weight: {dog.max_weight_female}</p>
