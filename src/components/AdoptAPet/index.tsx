@@ -37,7 +37,12 @@ export default function AdoptAPet() {
             },
           });
     
-          if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+          if (!response.ok) {
+            console.error(`Failed to fetch page ${currentPage}: ${response.status} ${response.statusText}`);
+            const responseBody = await response.text();
+            console.error(`Response body: ${responseBody}`);
+            break;
+          }
     
           const dogs = await response.json();
           console.log(`Fetched dogs (page ${currentPage}):`, dogs);
