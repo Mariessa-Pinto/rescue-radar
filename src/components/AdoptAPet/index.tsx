@@ -28,6 +28,7 @@ export default function AdoptAPet() {
         const pageSize = 20; 
     
         while (true) {
+          console.log('fetching page ${currentPage')
           const apiUrl = `https://api.api-ninjas.com/v1/dogs?${queryParams}&offset=${pageSize * (currentPage - 1)}`;
     
           const response = await fetch(apiUrl, {
