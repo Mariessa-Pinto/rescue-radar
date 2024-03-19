@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
@@ -6,6 +6,7 @@ export default function AdoptAPet() {
   const [dg, setDg] = useState<IAdopt[]>([]);
   const [offset, setOffset] = useState<number>(0);
   const router = useRouter();
+  const [expandedDog, setExpandedDog] = useState<number | null>(null);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -147,6 +148,12 @@ const WEIGHT_MULTIPLIER = 5;
     return 'Large';
   }
 
+  const toggleDogDetails = (index: number) => {
+    if (index !== 0) {
+      setExpandedDog(expandedDog === index ? null: index);
+    }
+  }
+
   return (
     <div>
       <div className={`flex flex-col mb-5 mt-5`}>
@@ -155,22 +162,26 @@ const WEIGHT_MULTIPLIER = 5;
       </div>
       {dg.length > 0 ? (
         dg.map((dog, index) => (
-          <div key={index} className={`flex flex-row gap-5 mb-20 mt-10 items-start`}>
-            <div>
-            <Image src={dog.image_link} alt='dog image' width={200} height={200}/>
-            </div> 
-            <div>
+          <div key={index} 
+          className={`mb-20 mt-10 ${index !== 0 ? 'border p-5 flex flex-col items-center' : 'flex flex-row gap-5 items-start'}`} 
+          onClick={() => toggleDogDetails(index)}>
+          <Image src={dog.image_link} alt='dog image' width={200} height={200} />
+          <div className={`${index !== 0 ? 'mt-3' : ''}`}>
             <div className={`flex flex-col mb-3`}>
-            <p className={`font-medium text-h4`}>{dog.name}</p>
+              <p className={`font-medium text-h4`}>{dog.name}</p>
             </div>
-            <p>Energy: {dog.energy}</p>
-            <p>Shedding: {dog.shedding}</p>
-            <p>Female Weight: {dog.max_weight_female} pounds</p>
-            <p>Male Weight: {dog.max_weight_male} pounds</p>
-            <p>Good with Children: {dog.good_with_children}</p>
-            <p>Good with Dogs: {dog.good_with_other_dogs}</p>
-            </div>
+            {(index === 0 || expandedDog === index) && (
+              <>
+                <p>Energy: {dog.energy}</p>
+                <p>Shedding: {dog.shedding}</p>
+                <p>Female Weight: {dog.max_weight_female} pounds</p>
+                <p>Male Weight: {dog.max_weight_male} pounds</p>
+                <p>Good with Children: {dog.good_with_children}</p>
+                <p>Good with Dogs: {dog.good_with_other_dogs}</p>
+              </>
+            )}
           </div>
+        </div>
         ))
       ) : (
         <p>No matches found based on your criteria.</p>
