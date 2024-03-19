@@ -170,6 +170,7 @@ const QuizContainer = () => {
 
   const handleSubmit = async () => {
     console.log("Submit button clicked");
+    await fetchAllDogs();
     const matchedDog = findMatchedDog();
     setMatchedDog(matchedDog);
     console.log("selectedAnswers at submit:", selectedAnswers);
