@@ -160,32 +160,58 @@ const WEIGHT_MULTIPLIER = 5;
       <h1 className={`text-h1 font-bold mt-3`}>Your Results</h1>
       <p className={`text-h4 font-medium`}>Your Top Breed is...</p>
       </div>
-      {dg.length > 0 ? (
-        dg.map((dog, index) => (
-          <div key={index} 
-          className={`mb-20 mt-10 ${index !== 0 ? 'border p-5 flex flex-col items-center' : 'flex flex-row gap-5 items-start'}`} 
-          onClick={() => toggleDogDetails(index)}>
-          <Image src={dog.image_link} alt='dog image' width={200} height={200} />
-          <div className={`${index !== 0 ? 'mt-3' : ''}`}>
-            <div className={`flex flex-col mb-3`}>
+      {dg.length > 0 && (
+        <>
+         
+          {dg.slice(0, 1).map((dog, index) => (
+            <div key={index} className={`flex flex-row gap-5 mb-20 mt-10 items-start`}>
+              <div>
+              <Image src={dog.image_link} alt='dog image' width={200} height={200} />
+              </div>
+              <div>
               <p className={`font-medium text-h4`}>{dog.name}</p>
+              <p>Energy: {dog.energy}</p>
+              <p>Shedding: {dog.shedding}</p>
+              <p>Female Weight: {dog.max_weight_female} pounds</p>
+              <p>Male Weight: {dog.max_weight_male} pounds</p>
+              <p>Good with Children: {dog.good_with_children}</p>
+              <p>Good with Dogs: {dog.good_with_other_dogs}</p>
+              </div>
             </div>
-            {(index === 0 || expandedDog === index) && (
-              <>
-                <p>Energy: {dog.energy}</p>
-                <p>Shedding: {dog.shedding}</p>
-                <p>Female Weight: {dog.max_weight_female} pounds</p>
-                <p>Male Weight: {dog.max_weight_male} pounds</p>
-                <p>Good with Children: {dog.good_with_children}</p>
-                <p>Good with Dogs: {dog.good_with_other_dogs}</p>
-              </>
-            )}
+          ))}
+
+        
+<div className="flex overflow-x-auto gap-4 p-2 mt-2" style={{scrollbarWidth: 'none'}}>
+            {dg.slice(1).map((dog, index) => {
+              const actualIndex = index + 1; 
+              return (
+                <div key={actualIndex} 
+                     className={`border-4 border-blue rounded-lg p-2 flex flex-col items-center`}
+                     onClick={() => toggleDogDetails(actualIndex)}>
+                  <Image src={dog.image_link} alt='dog image' width={200} height={200} />
+                  <div className="mt-3">
+                    <p className={`font-medium text-h4`}>{dog.name}</p>
+                   
+                    {expandedDog === actualIndex && (
+                      <>
+                     <p>Energy: {dog.energy}</p>
+                      <p>Shedding: {dog.shedding}</p>
+                      <p>Female Weight: {dog.max_weight_female} pounds</p>
+                      <p>Male Weight: {dog.max_weight_male} pounds</p>
+                      <p>Good with Children: {dog.good_with_children}</p>
+                      <p>Good with Dogs: {dog.good_with_other_dogs}</p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
-        ))
-      ) : (
-        <p>No matches found based on your criteria.</p>
+        </>
       )}
+      {dg.length === 0 && <p>No matches found based on your criteria.</p>}
     </div>
   );
 }
+
+
