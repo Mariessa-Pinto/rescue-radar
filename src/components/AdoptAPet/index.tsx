@@ -165,8 +165,8 @@ const WEIGHT_MULTIPLIER = 5;
             </div>
             <p>Energy: {dog.energy}</p>
             <p>Shedding: {dog.shedding}</p>
-            <p>Female Weight: {dog.max_weight_female}</p>
-            <p>Male Weight: {dog.max_weight_male}</p>
+            <p>Female Weight: {dog.max_weight_female} pounds</p>
+            <p>Male Weight: {dog.max_weight_male} pounds</p>
             <p>Good with Children: {dog.good_with_children}</p>
             <p>Good with Dogs: {dog.good_with_other_dogs}</p>
             </div>
