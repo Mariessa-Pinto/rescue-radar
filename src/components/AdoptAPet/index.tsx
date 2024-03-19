@@ -100,6 +100,14 @@ const WEIGHT_MULTIPLIER = 5;
     dog.score = score; 
   });
   
+  allMatchedDogs = allMatchedDogs.map(dog => ({
+    ...dog,
+    energy: convertEnergyToString(dog.energy as number),
+    shedding: convertSheddingToString(dog.shedding as number),
+    weight: convertWeightToString(dog.max_weight_male as number, dog.max_weight_female as number),
+    good_with_children: dog.good_with_children === 5 ? 'Yes' : 'No', 
+    good_with_other_dogs: dog.good_with_other_dogs === 5 ? 'Yes' : 'No' 
+  }));
 
   const matchedDogs = allMatchedDogs.filter(dog => dog.score >= MINIMUM_SCORE)
                                      .sort((a, b) => b.score - a.score);
@@ -119,6 +127,25 @@ const WEIGHT_MULTIPLIER = 5;
 
     fetchDogs();
   }, [router.isReady, router.query.answers]);
+
+  function convertEnergyToString(energy: number): string {
+    if (energy <= 2) return 'Low';
+    if (energy <= 3) return 'Medium';
+    return 'High';
+  }
+
+  function convertSheddingToString(shedding: number): string {
+    if (shedding <= 2) return 'Low';
+    if (shedding <= 3) return 'Medium';
+    return 'High';
+  }
+
+  function convertWeightToString(maleWeight: number, femaleWeight: number): string {
+    const avgWeight = (maleWeight + femaleWeight) / 2;
+    if (avgWeight <= 20) return 'Small';
+    if (avgWeight <= 50) return 'Medium';
+    return 'Large';
+  }
 
   return (
     <div>
