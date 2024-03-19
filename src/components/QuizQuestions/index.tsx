@@ -2,7 +2,8 @@ import Image from 'next/image';
 
 const QuizQuestions = ({ label, question, answers, onAnswerSelect, selectedAnswer }: QuizQuestionsProps) => {
     return (
-        <div className={`bg-white rounded-lg p-6 mb-4 lg:flex lg:items-start lg:justify-between lg:flex-col lg:rounded-lg lg:shadow-lg`}>
+       
+        <div className={`lg:block bg-white rounded-lg p-6 mb-4 lg:flex lg:items-start lg:justify-between lg:flex-col lg:rounded-lg lg:bg-white lg:h-full lg:rounded-lg`}>
             <div className={`lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-4`}>
                 <div className={`text-2xl font-bold`}>{label}</div>
                 <div className={`text-1xl font-semibold`}>{question}</div>
@@ -18,6 +19,7 @@ const QuizQuestions = ({ label, question, answers, onAnswerSelect, selectedAnswe
                 ))}
             </div>
         </div>
+       
         
     );
 }
