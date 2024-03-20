@@ -98,7 +98,7 @@ export default function BarChart() {
             <div className={`h-96 w-96 mb-4 lg:mr-8 lg:ml-8 lg:mr-0`}>
                 <Bar data={chartData} options={chartOptions} />
             </div>
-            <div className={`flex flex-col lg:w-96`}>
+            <div data-testid="chart" className={`flex flex-col lg:w-96`}>
                 <h2 className={`text-lg lg:text-xl font-semibold mb-4 lg:mb-0`}>Backed by Data:</h2>
                 <div style={{ width: '430px' }}>
                     <p className="text-base lg:text-lg">A National Institutes of Expectations for dog ownership: Perceived physical, mental and psychosocial health among prospective adopters. The perceived benefits pertaining to:</p>

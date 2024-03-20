@@ -79,10 +79,21 @@ describe('Home Page', () => {
     
         cy.url().should('include', '/results');
       });
-   /* - methods to add: 
 
-    .within – limit the scope of cypress commands to within a specific element for example within a form - maybe adoption form - phone number and name
+      it('should render the bar chart and verify details', () => {
+        cy.visit('http://localhost:3000/whyAdopt');
+    
+        cy.get('[data-testid="barchart"]').within(() => {
+          cy.get('canvas').should('exist');
+        });
+    
+        cy.get('[data-testid="chart"]').within(() => {
+          cy.contains('Backed by Data:').should('be.visible');
+          cy.contains('Mental Health Benefits').should('be.visible');
+          cy.contains('Physical Health Benefits').should('be.visible');
+          cy.contains('Social Wellbeing benefits').should('be.visible');
+        });
+      });
 
-    */
 
 })
