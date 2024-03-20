@@ -7,6 +7,7 @@ export default function AdoptAPet() {
   const [offset, setOffset] = useState<number>(0);
   const router = useRouter();
   const [expandedDog, setExpandedDog] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -19,6 +20,7 @@ export default function AdoptAPet() {
     const MINIMUM_SCORE = 3;
 
     const fetchDogs = async () => {
+      setLoading(true);
       try {
         const queryParams = new URLSearchParams({
         min_life_expectancy: selectedAnswers.min_life_expectancy || '1',
@@ -126,8 +128,11 @@ const WEIGHT_MULTIPLIER = 5;
   } else {
     setDg([]);
 
-      }} catch (error) {
+      }
+      setLoading(false);
+    } catch (error) {
         console.error('Error:', error);
+        setLoading(false);
       }
     };
 
@@ -166,7 +171,11 @@ const WEIGHT_MULTIPLIER = 5;
       <h1 className={`text-h1 font-bold mt-3`}>Your Results</h1>
       <p className={`text-h4 font-medium`}>Your Top Breed is...</p>
       </div>
-      {dg.length > 0 && (
+      
+      { loading ? (
+        <p>Loading...</p>
+      ) : 
+        dg.length > 0 ? (
         <>
          
           {dg.slice(0, 1).map((dog, index) => (
@@ -214,8 +223,11 @@ const WEIGHT_MULTIPLIER = 5;
             })}
           </div>
         </>
-      )}
-      {dg.length === 0 && <p>No matches found based on your criteria.</p>}
+      ) : (
+      <p>No matches found based on your criteria</p>
+      )
+      
+      } 
     </div>
   );
 }
