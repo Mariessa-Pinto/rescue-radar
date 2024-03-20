@@ -182,7 +182,7 @@ const QuizContainer = () => {
 
   return (
     <>
-      <div data-testid="quizCon">
+      <div data-testid="quizCon" >
         {questions.map((questionData, index) => (
           <QuizQuestions
             key={index}
@@ -194,7 +194,7 @@ const QuizContainer = () => {
           />
         ))}
       </div>
-      <LargeButton text="Submit" link='/results' onClick={handleSubmit} />
+      <LargeButton data-testid="submit-quiz" text="Submit" link='/results' onClick={handleSubmit} />
    
     </>
   );

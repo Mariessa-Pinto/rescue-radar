@@ -25,5 +25,5 @@ a web application displaying rescue dogs in your region to be adopted. It will h
 6.	.find – is finding the element 
 7.	.find(‘[]’) – is finding the element by looking for the id inside of a component 
 8.	Cy.wrap – allows the use of cypress on the object. 
-9.	.its – get a property off of something 
+9.	.intercept - spy and stub network requests and responses
 10.	.within – limit the scope of cypress commands to within a specific element 
