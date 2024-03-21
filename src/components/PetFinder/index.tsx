@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import ViewDog from "../ViewDog";
+import FormSent from "../FormSent";
+import AdoptionForm from "../AdoptionForm";
 
 export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFilter, sizeFilter, genderFilter, goodWithChildrenFilter, goodWithCatsFilter, goodWithDogsFilter }: IPetFinderProps) {
   const apiKey = process.env.NEXT_PUBLIC_KEY;
   const secret = process.env.NEXT_PUBLIC_SECRET;
   const [dogs, setDogs] = useState<IDog[]>([]);
   const [selectedDog, setSelectedDog] = useState<IDog | null>(null);
+  const [showForm, setShowForm] = useState(false);
   const [page, setPage] = useState(1);
+
 
   useEffect(() => {
     fetchData();
@@ -74,6 +78,10 @@ export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFil
   const loadMoreDogs = () => {
     setPage(prevPage => prevPage + 1);
   };
+  const handleAdoptNowClick = () => {
+    setShowForm(true);
+  };
+
 
   return (
     <div data-testid="petfinder" className={`flex flex-wrap justify-center md:justify-between lg:justify-center items-center gap-2 lg:gap-10 md:w-full`}>
@@ -104,6 +112,11 @@ export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFil
         })
       }
       {selectedDog && <ViewDog dog={selectedDog} onClose={() => setSelectedDog(null)} />}
+
+
+
+
+
       <div className="">
         <button onClick={loadMoreDogs}>Load More</button>
       </div>

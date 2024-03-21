@@ -1,7 +1,19 @@
 import Image from 'next/image';
-import RedButton from '../RedButton';
+import RedButtonTwo from '../RedButtonTwo';
+import AdoptionForm from '../AdoptionForm';
+import { useState } from 'react';
 
 const ViewDog = ({ dog, onClose }: IViewDogProps) => {
+const [showForm, setShowForm] = useState(false);
+
+    const handleAdoptNowClick = () => {
+        setShowForm(true);
+    };
+
+
+
+
+   
     return (
         <div className="fixed top-20 left-0 w-full h-full flex flex-col items-center md:items-start justify-center bg-white-800 bg-opacity-75 z-50 lg:w-full lg:h-dvh">
             <div className="bg-white w-full h-full flex flex-col items-center lg:justify-center md:items-start lg:items-center p-10 gap-10 bg-no-repeat bg-halfCircle bg-top-right md:bg-100% lg:bg-70%">
@@ -36,10 +48,8 @@ const ViewDog = ({ dog, onClose }: IViewDogProps) => {
                 </div>
                 <p className={`font-outfit text-base mb-5 md:w-6/12 block lg:hidden`}>{dog.description}</p>
                 <div className='flex justify-center w-full lg:justify-start lg:w-8/12'>
-                    <RedButton
-                        text="Adopt Now"
-                        link='/adoptionForm'
-                    />
+                {showForm && <AdoptionForm dog={dog} onClose={() => setShowForm(false)} />}
+                {!showForm && <RedButtonTwo onClick={handleAdoptNowClick} text="Adopt Now" />}
                 </div>
             </div>
         </div>

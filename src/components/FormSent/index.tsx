@@ -1,7 +1,8 @@
 import Navbar from '@/components/Navbar'
 import RedButton from '@/components/RedButton'
 
-export default function FormSent() {
+
+const FormSent = () => {
     return (
         <main className={`flex flex-col items-center justify-between`}>
             <Navbar />
@@ -20,3 +21,5 @@ export default function FormSent() {
         </main>
     )
 }
+
+export default FormSent();

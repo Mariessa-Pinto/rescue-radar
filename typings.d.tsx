@@ -8,6 +8,13 @@ interface ILargeButton {
     value?: string;
     disabled?: boolean;
 }
+interface ILargeButtonTwo {
+  text: string;
+  onClick?: (e: any) => void;
+  id?: string;
+  value?: string;
+  disabled?: boolean;
+}
 
 interface IDog {
   id: number; 
@@ -74,4 +81,9 @@ interface QuizQuestionsProps {
   answers: string[];
   onAnswerSelect: (answer: string) => void;
   selectedAnswer: string;
+}
+
+interface IAdoptDogProps {
+  dog: IDog;
+  onClose: () => void;
 }
