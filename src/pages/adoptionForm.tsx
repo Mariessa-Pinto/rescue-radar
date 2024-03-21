@@ -49,9 +49,10 @@ export default function AdoptionForm() {
     return (
         <main>
             <Navbar />
+            <div className={`lg:bg-gradient-to-b from-blue to-red`}>
             <div className={`flex flex-col items-center justify-between `}>
                 <h1 className={`text-h1 md:text-th1 font-extrabold lg:text-wh1`}>Adoption Form</h1>
-                <form className={`flex flex-col mt-8 w-404`}>
+                <form className={`flex flex-col mt-8 w-404 bg-white h-full mb-8 p-12 rounded-lg`}>
                     <div className={`flex flex-col gap-4`}>
                         <label>First Name</label>
                         <input
@@ -93,8 +94,7 @@ export default function AdoptionForm() {
                             onChange={(e) => handleFieldChange(FormFields.FIT_REASON, e.target.value)}
                         />
                     </div>
-                </form>
-                <div className={`mt-8`}>
+                    <div className={`mt-8`}>
                     {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
                     <button
                         className={`rounded-full border-2 w-60 h-14 border-red font-outfit text-h4 font-medium text-white bg-red shadow-lg lg:w-96 lg:h-16 lg:text-wh2`}
@@ -105,6 +105,9 @@ export default function AdoptionForm() {
                         Send Form
                     </button>
                 </div>
+                </form>
+    
+            </div>
             </div>
         </main>
     );
