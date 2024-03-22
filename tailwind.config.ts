@@ -35,6 +35,7 @@ const config: Config = {
         '350': '350px',
         '400': '400px',
         '626': '626px',
+        '1600': '1600px'
       },
       colors: {
         blue: '#1FCBFF',

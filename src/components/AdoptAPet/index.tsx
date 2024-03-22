@@ -1,6 +1,7 @@
 import { useState, useEffect, SetStateAction } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import RedButton from '../RedButton';
 
 export default function AdoptAPet() {
   const [dg, setDg] = useState<IAdopt[]>([]);
@@ -166,9 +167,9 @@ const WEIGHT_MULTIPLIER = 5;
   }
 
   return (
-    <div data-testid="adoptapet">
+    <div data-testid="adoptapet" className={`lg:bg-white lg:rounded-lg lg:w-1600 lg:h-full lg:p-6 lg:shadow-xl lg:mb-32`}>
       <div className={`flex flex-col mb-5 mt-5`}>
-      <h1 className={`text-h1 font-bold mt-3`}>Your Results</h1>
+      <h1 className={`text-h1 font-bold mt-3`}>Your Results!</h1>
       <p className={`text-h4 font-medium`}>Your Top Breed is...</p>
       </div>
       
@@ -176,34 +177,36 @@ const WEIGHT_MULTIPLIER = 5;
         <p>Loading...</p>
       ) : 
         dg.length > 0 ? (
-        <>
+        <div className={`lg:flex lg:flex-row lg:justify-between`}>
          
           {dg.slice(0, 1).map((dog, index) => (
-            <div key={index} className={`flex flex-row gap-5 mb-20 mt-10 items-start`}>
+            <div key={index} className={`flex flex-row gap-5 mb-20 mt-10 items-start justify-center`}>
               <div>
-              <Image src={dog.image_link} alt='dog image' width={200} height={200} />
+              <Image src={dog.image_link} alt='dog image' width={200} height={200} className={`lg:w-626`}/>
               </div>
               <div>
-              <p className={`font-medium text-h4`}>{dog.name}</p>
-              <p>Energy: {dog.energy}</p>
-              <p>Shedding: {dog.shedding}</p>
-              <p>Female Weight: {dog.max_weight_female} pounds</p>
-              <p>Male Weight: {dog.max_weight_male} pounds</p>
-              <p>Good with Children: {dog.good_with_children}</p>
-              <p>Good with Dogs: {dog.good_with_other_dogs}</p>
+              <p className={`font-medium text-h4 lg:font-bold lg:text-wh2`}>{dog.name}</p>
+              <p className={`lg:text-h4`}>Energy: {dog.energy}</p>
+              <p className={`lg:text-h4`}>Shedding: {dog.shedding}</p>
+              <p className={`lg:text-h4`}>Female Weight: {dog.max_weight_female} pounds</p>
+              <p className={`lg:text-h4`}>Male Weight: {dog.max_weight_male} pounds</p>
+              <p className={`lg:text-h4`}>Good with Children: {dog.good_with_children}</p>
+              <p className={`lg:text-h4`}>Good with Dogs: {dog.good_with_other_dogs}</p>
               </div>
             </div>
           ))}
 
         
-<div className="flex overflow-x-auto gap-4 p-2 mt-2" style={{scrollbarWidth: 'none'}}>
+<div className="flex flex-col gap-4 p-2 mt-2">
+  <p className={`lg:text-h4`}>Other Breeds Choices</p>
+  <div className={`flex flex-row gap-4`}>
             {dg.slice(1).map((dog, index) => {
               const actualIndex = index + 1; 
               return (
                 <div key={actualIndex} 
                      className={`border-4 border-blue rounded-lg p-2 flex flex-col items-center`}
                      onClick={() => toggleDogDetails(actualIndex)}>
-                  <Image src={dog.image_link} alt='dog image' width={200} height={200} />
+                  <Image src={dog.image_link} alt='dog image' width={200} height={200} className={`lg:w-259`}/>
                   <div className="mt-3">
                     <p className={`font-medium text-h4`}>{dog.name}</p>
                    
@@ -221,14 +224,22 @@ const WEIGHT_MULTIPLIER = 5;
                 </div>
               );
             })}
+            </div>
           </div>
-        </>
+        </div>
       ) : (
       <p>No matches found based on your criteria</p>
       )
       
       } 
+      <div className={`sm:hidden md:hidden lg:flex lg:justify-center lg:items-center`}>
+       <RedButton 
+       text="View Adoptable Dogs"
+       link='/viewDog'
+       />
+       </div>
     </div>
+   
   );
 }
 
