@@ -19,7 +19,7 @@ const config: Config = {
         'tbase': '24px',
         'wh1': '48px',
         'wh2': '32px',
-         'h5': '18px',
+        'h5': '18px',
       },
       height: {
         '65': '65vh',
@@ -28,6 +28,7 @@ const config: Config = {
         '384': '384px',
         '217': '217px',
         '630': '630px',
+        '430': '430px',
       },
       width: {
         '197': '197px',

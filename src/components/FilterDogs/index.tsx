@@ -129,7 +129,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
     return (
         <div className={`fixed top-20 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-800 bg-opacity-75 z-50`}>
             <div className={`bg-white bg-100% w-full overflow-y-scroll pb-28 h-full flex flex-col items-center bg-no-repeat bg-oval bg-filter-bottom`}>
-                <button className={`absolute top-2 right-80 text-black font-outfit font-outfit text-h1 font-extrabold`} onClick={onClose}>
+                <button className={`absolute top-2 right-4 lg:right-64 text-black font-outfit font-outfit text-h1 font-extrabold`} onClick={onClose}>
                     X
                 </button>
 
@@ -139,7 +139,7 @@ const FilterDogs = ({ onClose, onApplyFilters }: IFilter) => {
                         <p className={`font-outfit text-h4 text-white font-medium md:text-th4 lg:text-wh4`}>Select Breeds:</p>
                     </div>
                     {showBreeds && (
-                            <div className={`mt-neg2 flex items-end justify-end w-11/12 lg:w-full`}>
+                        <div className={`mt-neg2 flex items-end justify-end w-11/12 lg:w-full`}>
                             <input
                                 type="text"
                                 placeholder="Search breed..."

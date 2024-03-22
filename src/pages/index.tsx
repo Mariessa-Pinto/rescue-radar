@@ -4,7 +4,6 @@ import LargeButton from '@/components/LargeButton'
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-
 export default function Home() {
   const [isLargeScreen, setIsLargeScreen] = useState<boolean>(false);
 
@@ -19,7 +18,6 @@ export default function Home() {
 
   return (
     <main className={`flex min-h-screen flex-col items-center overflow-hidden md:justify-between`}>
-  
       <Navbar />
       <div className={`p-10 pt-5 pb-0`}>
         <h1 className={`font-outfit text-h1 font-extrabold md:text-th1 lg:text-wh1 lg:max-w-2xl`}>Find your perfect companion!</h1>
@@ -30,11 +28,10 @@ export default function Home() {
           <LargeButton
             text="Take Quiz"
             link='/quiz'
-            
           />
         </div>
         <div className={`w-screen h-full bg-red rounded-tr-xl rounded-tl-xl bg-no-repeat bg-bottom-right md:bg-bottom-right-md lg:bg-bottom-right-lg md:rounded-tr-2xl md:rounded-tl-2xl lg:rounded-tr-3xl lg:rounded-tl-3xl ${!isLargeScreen && 'bg-collie'}`}>
-        <div className={`hidden lg:block absolute bottom-0 left-0 z-10`}>
+          <div className={`hidden lg:block absolute bottom-0 left-0 z-10`}>
             <Image
               src={'/home/dog1.png'}
               alt='Dog image'
