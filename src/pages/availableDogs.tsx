@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import PetFinder from '@/components/PetFinder'
 import FilterDogs from '@/components/FilterDogs'
 
@@ -16,6 +17,27 @@ export default function AvailableDogs() {
     const [goodWithDogsFilter, setGoodWithDogsFilter] = useState<boolean>(false);
     const [selectedFilter, setSelectedFilter] = useState<IFilter | null>(null);
     const [filterOpen, setFilterOpen] = useState<boolean>(false);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const { selectedBreeds } = router.query;
+        if (typeof selectedBreeds === 'string') {
+            try {
+                if (typeof selectedBreeds === 'string') {
+                    const breedsArray = JSON.parse(selectedBreeds);
+                    setBreedFilter(breedsArray.join(','));
+                    console.log(breedFilter);
+                } else {
+                    // Handle the case where selectedBreeds is undefined
+                    console.error('selectedBreeds is undefined');
+                }
+            } catch (error) {
+                console.error('Error parsing selectedBreeds:', error);
+                // Handle error parsing selectedBreeds
+            }
+        }
+    }, [router.query]);
 
     const handleDogClick = (dog: IDog) => {
         setSelectedDog(dog);

@@ -78,11 +78,11 @@ export default function PetFinder({ searchQuery, onDogClick, breedFilter, ageFil
   return (
     <div data-testid="petfinder" className={`flex flex-wrap justify-center md:justify-between lg:justify-center items-center gap-2 lg:gap-10 md:w-full`}>
       {
-        dogs.map((dog) => {
+        dogs.map((dog, index) => {
           return (
             <div
               className={`flex flex-col shadow-lg bg-white rounded-button w-197 md:w-259 lg:w-350 h-64 lg:h-357`}
-              key={dog.id}
+              key={index}
               onClick={() => handleDogClick(dog)}
             >
               <div className={`flex flex-col `}>

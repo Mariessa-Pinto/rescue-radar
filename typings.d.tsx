@@ -54,6 +54,10 @@ interface IViewDogProps {
   onClose: () => void;
 }
 
+interface IQuizResultFilter {
+  selectedBreeds: string[];
+}
+
 interface IFilter {
   onClose: () => void;
   onApplyFilters: (
