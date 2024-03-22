@@ -95,14 +95,14 @@ export default function BarChart() {
     };
     return (
         <div data-testid="barchart" className={`flex flex-col lg:flex-row items-center lg:gap-32 lg:items-center lg:ml-16`}>
-            <div className={`h-96 w-96 mb-4 lg:mr-8 lg:ml-8 lg:mr-0`}>
+            <div className={`h-430 mb-4 lg:mr-8 lg:ml-8 lg:mr-0`}>
                 <Bar data={chartData} options={chartOptions} />
             </div>
             <div data-testid="chart" className={`flex flex-col lg:w-96`}>
-                <h2 className={`text-lg lg:text-xl font-semibold mb-4 lg:mb-0`}>Backed by Data:</h2>
-                <div style={{ width: '430px' }}>
-                    <p className="text-base lg:text-lg">A National Institutes of Expectations for dog ownership: Perceived physical, mental and psychosocial health among prospective adopters. The perceived benefits pertaining to:</p>
-                    <ul className="text-base lg:text-lg">
+                <h2 className={`font-outfit text-lg lg:text-xl font-semibold mb-4 lg:mb-0`}>Backed by Data:</h2>
+                <div className={`w-full mb-10`}>
+                    <p className="font-outfit text-base lg:text-lg">A National Institutes of Expectations for dog ownership: Perceived physical, mental and psychosocial health among prospective adopters. The perceived benefits pertaining to:</p>
+                    <ul className="text-base font-outfit lg:text-lg">
                         <li>Mental Health Benefits</li>
                         <li>Physical Health Benefits</li>
                         <li>Social Wellbeing benefits</li>

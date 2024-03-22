@@ -73,12 +73,14 @@ export default function Navbar() {
             <div data-testid="header" className={`flex flex-row h-20 w-screen shadow-lg bg-white items-center justify-center pl-5 pr-5 hidden lg:flex`}>
                 <div className={`w-9/12 flex flex-row items-center justify-between`}>
                     <div className="flex items-center">
-                        <Image
-                            src="/header/weblogo.png"
-                            alt="Menu"
-                            width={200}
-                            height={200}
-                        />
+                        <Link href="/">
+                            <Image
+                                src="/header/weblogo.png"
+                                alt="Menu"
+                                width={200}
+                                height={200}
+                            />
+                        </Link>
                     </div>
                     <div className={`flex flex-row gap-4`}>
                         <Link className={`font-bold`} href="/">Home</Link>
